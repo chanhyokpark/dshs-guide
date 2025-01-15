@@ -1,6 +1,13 @@
 [book]
 authors = ["chanhyokpark"]
-language = "en"
+language = "ko"
 multilingual = false
 src = "src"
 title = "dshs.app 가이드"
+
+[output.html]
+smart-punctuation = true
+mathjax-support = true
+site-url = "/mdBook/"
+git-repository-url = "https://github.com/chanhyokpark/dshs-guide"
+edit-url-template = "https://github.com/chanhyokpark/dshs-guide/edit/main/{path}"
