@@ -110,4 +110,8 @@
         <description>Created after removal of "웹사이트 가이드" from DSHS.APP 가이드</description>
         <accepts>student_web.html</accepts>
     </rule>
+    <rule id="2da64c7f">
+        <description>Created after removal of "Starter" from DSHS.APP 가이드</description>
+        <accepts>starter.html</accepts>
+    </rule>
 </rules>

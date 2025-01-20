@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
 <topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
-       title="API Reference" id="API_Reference">
+       title="API 레퍼런스" id="API_Reference">
     <p>
         스코프 목록을 보거나 API를 시도해 보려면 <a href="https://www.dshs.app/api-doc">사이트의 API 문서</a> 를 참조하세요
     </p>
