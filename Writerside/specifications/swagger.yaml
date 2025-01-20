@@ -1,0 +1,957 @@
+openapi: 3.0.0
+info:
+  title: dshs.app API
+  description: '인증 관련 정보는 https://github.com/chanhyokpark/dshs-app/wiki/API 를 참고하세요'
+  version: '1.0'
+components:
+  schemas:
+    user:
+      properties:
+        name:
+          type: string
+        student_id:
+          type: string
+        sex:
+          required: false
+          nullable: true
+          type: string
+          enum: [m, f]
+          description: 사용자 성별, 자습 신청 관련 경로에서만 제공됩니다. m은 남성, f는 여셩입니다.
+    notification:
+      properties:
+        _id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        href:
+          type: string
+          example: "/penalty"
+        content:
+          type: string
+        read:
+          type: boolean
+
+    seat_reservation:
+      properties:
+        seat_name:
+          oneOf:
+            - type: string
+            - type: 'null'
+        area_name:
+          oneOf:
+            - type: string
+            - type: 'null'
+        room_name:
+          oneOf:
+            - type: string
+            - type: 'null'
+        user:
+          properties:
+            name:
+              type: string
+            alias:
+              type: string
+              description: '별칭, 존재하지 않을 수도 있음'
+            student_id:
+              type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://www.dshs.app/authorize'
+          tokenUrl: 'https://www.dshs.app/api/v1/token'
+          scopes:
+            userinfo_read: 사용자 정보 읽기
+            userinfo_readphone: 사용자 전화번호 읽기
+            outrequests_read: 외출 신청 읽기
+            outrequests_write: 외출 신청 작성
+            penalties_read: 벌점 내역 읽기
+            reservations_read: 자습장소 신청 읽기
+            reservations_write: 자습장소 신청
+            notifications_read: 알림 읽기
+            notifications_write: 알림 삭제
+
+security:
+  - OAuth2: [ ]
+paths:
+  '/api/v1/meals/{date}':
+    get:
+      summary: 급식 정보
+      description: '해당 날짜의 급식 정보를 반환합니다. 출처는 NEIS API이며, 알레르기 표시, 조식 표시를 제거한 뒤 제공됩니다.'
+      security: [ ]
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+      responses:
+        '200':
+          description: 급식 정보
+          content:
+            application/json:
+              schema:
+                type: array
+                description: '아침, 점심, 저녁(없으면 빈 문자열)'
+                items:
+                  type: string
+        '400':
+          description: 잘못된 형식의 날짜
+        '404':
+          description: 존재하지 않는 날짜
+  '/api/v1/outrequests/{id}':
+    get:
+      summary: 외출 신청 기록
+      description: 해당 id의 외출 신청 기록을 제공하거나 새로운 외출 신청의 템플릿을 제공합니다.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          description: '외출 신청의 id, 새로운 신청의 데이터이면 new'
+      responses:
+        '200':
+          description: 외출 신청 기록
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                    description: 신청 기록의 id
+                  requester:
+                    $ref: '#/components/schemas/user'
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+                    description: 참여자 목록
+                  date_request:
+                    type: string
+                    format: date-time
+                  date_from:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  date_to:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  category:
+                    type: string
+                  reason:
+                    type: string
+                  status:
+                    type: integer
+                    description: '0: 대기 중, 1: 승인, -1: 거부'
+                  share:
+                    type: integer
+                    description: '0: 비공개, 1: 링크 공유, 2: 전체 공개'
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                        - modify
+                        - delete
+                        - participate
+                        - escape
+                        - force_escape
+                        - transit
+                    description: >
+                      가능한 동작:
+                      * `modify` - 수정
+                      * `delete` - 삭제
+                      * `participate` - 참여
+                      * `escape` - 나가기
+                      * `force_escape` - 퇴출시키기
+                      * `transit` - 소유권 넘기기
+        '403':
+          description: outrequests_read 권한 없음
+        '404':
+          description: id를 찾을 수 없음
+        '400':
+          description: 올바르지 않은 id
+    delete:
+      summary: 외출 신청 삭제
+      description: 해당 id의 외출 신청을 삭제합니다. delete 권한을 가지고 있어야 합니다.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 삭제 성공
+        '400':
+          description: 올바르지 않은 id
+        '403':
+          description: outrequests_write 권한 없거나 delete 권한 없음
+        '404':
+          description: id를 찾을 수 없음
+    post:
+      summary: 외출 신청 수정/만들기
+      description: 외출 신청을 수정하거나 새로 만듭니다. 새로 만드려면 id를 new로 설정하세요.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                category:
+                  type: string
+                  enum:
+                    - 특별실 신청
+                    - 일반외출
+                    - 일반외박
+                    - 연구외출
+                    - 연구외박
+                reason:
+                  type: string
+                date_from:
+                  type: string
+                  format: date-time
+                date_to:
+                  type: string
+                  format: date-time
+                share:
+                  type: integer
+                  description: "0: 비공개, 1: 링크 공유, 2: 전체 공개"
+                force:
+                  type: boolean
+                  description: 400 오류에서 force_available이 true일 경우 오류를 무시하고 신청합니다. 반드시 기본값을 false로 설정하세요.
+                  example: false
+                  required: false
+      responses:
+        200:
+          description: 신청 수정/만들기 성공
+          content:
+            application/json:
+              schema:
+                properties:
+                  requestId:
+                    type: string
+        400:
+          description: 올바르지 않은 요청
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - invalid_id
+                      - invalid_category
+                      - invalid_reason
+                      - invalid_date
+                      - invalid_date_from
+                      - invalid_date_range
+                      - invalid_special_time
+                      - invalid_special_reason
+                      - invalid_special_reason_classroom
+                      - same_request_exists
+                      - share_change_warning
+                  force_available:
+                    type: boolean
+                    required: false
+        403:
+          description: outrequest_write 권한 없거나 modify 권한 없음
+        404:
+          description: id를 찾을 수 없음
+
+  /api/v1/outrequests/{id}/users:
+    put:
+      summary: 외출 신청에 참여하기
+      description: 외출 신청에 참여합니다. participate 권한을 가지고 있어야 합니다.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: 참여 성공
+        400:
+          description: 올바르지 않은 id
+        403:
+          description: outrequests_write 권한 없거나 participate 권한 없음
+        404:
+          description: id를 찾을 수 없음
+    delete:
+      summary: 외출 신청에서 나가기
+      description: 외출 신청에서 나갑니다. 강제 퇴출은 구현되어 있지 않습니다. escape(나가기) 또는 force_escape(강제 퇴출) 권한을 가지고 있어야 합니다.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: 나가기 성공
+        400:
+          description: 올바르지 않은 id
+        403:
+          description: outrequests_write 권한 없거나 escape 또는 force_escape 권한 없음
+        404:
+          description: id를 찾을 수 없음
+    patch:
+      summary: 소유권 넘기기(미구현)
+      description: 미구현
+      tags:
+        - 외출 신청
+      responses:
+        405:
+          description: 미구현
+  /api/v1/outrequests/:
+    get:
+      summary: 외출 신청 기록들
+      description: 외출 신청 기록을 제공합니다.
+      tags:
+        - 외출 신청
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: query
+          name: type
+          description: 외출 신청 종류입니다. 파라미터가 없으면 모든 신청을 제공합니다. query의 경우 검색어를 제공해야 합니다.
+          schema:
+            type: string
+            enum:
+              - notended
+              - ended
+              - public
+              - query
+        - in: query
+          name: query
+          description: 검색 쿼리입니다. type이 query일 때만 유효합니다.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 외출 신청 기록
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      description: 신청 기록의 id
+                    requesterName:
+                      type: string
+                      description: 요청자, (학번) (이름) 형식
+                    requesterCount:
+                      type: integer
+                      description: 요청자를 제외한 참여자 수
+                    date_from:
+                      type: string
+                      format: date-time
+                    date_to:
+                      type: string
+                      format: date-time
+                    category:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: integer
+                      description: '0: 대기 중, 1: 승인, -1: 거부'
+                    locked:
+                      type: boolean
+                      description: '잠김 여부(사용되지 않음)'
+                    invited:
+                      type: boolean
+                      description: '초대 여부(사용되지 않음)'
+        '400':
+          description: 올바르지 않은 형식
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    description: 오류 정보
+                    example: invalid type
+        '403':
+          description: outrequests_read 권한 없음
+  /api/v1/penalties:
+    get:
+      summary: 전체 벌점과 기록
+      description: |
+        전체 벌점과 벌점 정보를 제공합니다.
+      tags:
+        - 벌점
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+      responses:
+        '200':
+          description: 벌점 정보
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+                  positive:
+                    type: number
+                    description: 모든 양의 점수의 합
+                  negative:
+                    type: number
+                    description: 모든 음의 점수의 합, 음수
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        target:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                        giver:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                        date:
+                          type: string
+                          format: date-time
+                        reason:
+                          type: string
+                        points:
+                          type: integer
+        '403':
+          description: read 권한 없음
+  /api/v1/penalties/points:
+    get:
+      summary: 벌점 점수 정보
+      description: 벌점 점수 정보를 제공합니다.
+      tags:
+        - 벌점
+      responses:
+        200:
+          description: 벌점 점수 정보
+          content:
+            application/json:
+              schema:
+                properties:
+                  total:
+                    type: number
+                  positive:
+                    type: number
+                  negative:
+                    type: number
+  /api/v1/userinfo:
+    get:
+      summary: 사용자 정보를 json으로 리턴
+      description: >
+        Access Token에 해당되는 사용자의 정보를 리턴합니다. userinfo_readphone 스코프가 있으면 학생/부모님
+        휴대전화 정보도 포함됩니다.
+      responses:
+        '200':
+          description: 사용자 정보
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  student_id:
+                    type: string
+                  grade:
+                    type: integer
+                  class:
+                    type: integer
+                  class_num:
+                    type: integer
+                  joined_year:
+                    type: integer
+                  penalty_points:
+                    type: number
+                  unread_notifications:
+                    type: integer
+                  sex:
+                    type: string
+                    required: false
+                    enum: [m, f]
+                  phone_number:
+                    type: string
+                    required: false
+                  parent_phone_number:
+                    type: string
+                    required: false
+        '403':
+          description: read 권한 없음
+  /api/v1/notifications:
+    get:
+      summary: 모든 알림 읽기
+      description: 알림 목록을 읽습니다(모든 알림이 읽음 처리됩니다).
+      tags:
+        - 알림
+      responses:
+        200:
+          description: 알림 목록
+          content:
+            applications/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/notification"
+        403:
+          description: notifications_read 권한 없음
+    delete:
+      summary: 모든 알림 삭제
+      description: 모든 알림을 삭제합니다.
+      tags:
+        - 알림
+      responses:
+        200:
+          description: 모든 알림 삭제함
+        403:
+          description: notifications_write 권한 없음
+  /api/v1/notifications/{id}:
+    get:
+      summary: 알림 읽기
+      description: 알림을 읽습니다(해당 알림이 읽음 처리됩니다).
+      tags:
+        - 알림
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: 알림 정보
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/notification"
+        403:
+          description: notification_read 권한 없음
+        404:
+          description: 존재하지 않는 알림
+    delete:
+      summary: 알림 삭제
+      description: 알림을 삭제합니다.
+      tags:
+        - 알림
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: 알림 삭제됨
+        403:
+          description: notifications_write 권한 없음
+        404:
+          description: 존재하지 않는 알림
+
+  '/api/v1/reservations/{date}':
+    get:
+      summary: 자습 신청 정보
+      description: 자습 신청 정보를 읽습니다. 실시간 현황은 api로 제공되지 않습니다.
+      tags:
+        - 자습 신청
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+      responses:
+        '200':
+          description: 자습 신청 정보
+          content:
+            application/json:
+              schema:
+                properties:
+                  available:
+                    type: boolean
+                    description: 신청 가능 여부
+                  time:
+                    properties:
+                      from:
+                        type: string
+                        format: date-time
+                        description: 신청 시작 시각
+                      to:
+                        type: string
+                        format: date-time
+                        description: 신청 종료 시각
+                  data:
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties:
+                          $ref: "#/components/schemas/user"
+                      areaCountData:
+                        type: array
+                        description: 신청자 수 정보, 추후 object로 변경될 수 있음
+                        items:
+                          properties:
+                            area_name:
+                              type: string
+                            occupied:
+                              type: integer
+                              description: 구역 신청자 수
+                      version:
+                        type: integer
+                        description: 버전, 실시간 서비스에서 제공되는 버전과 일치합니다.
+                  user_info:
+                    properties:
+                      seat:
+                        type: string
+                        description: 신청한 좌석
+                      student_id:
+                        type: string
+                        description: 학번
+                      change_streak:
+                        type: integer
+                        description: 변경 횟수
+                      lock:
+                        type: boolean
+                        description: 잠김 여부
+                  limit:
+                    type: integer
+                    description: 최대 변경 횟수
+        '403':
+          description: reservations_read 권한 없음
+    post:
+      summary: 자습 신청하기
+      description: 자습 장소를 신청합니다.
+      tags:
+        - 자습 신청
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                seat:
+                  type: string
+                  description: 좌석 이름
+                  example: a101
+      responses:
+        200:
+          description: 신청 성공
+          content:
+            application/json:
+              schema:
+                properties:
+                  changed:
+                    type: boolean
+                    description: 변경 여부(false이면 새로운 신청)
+                  change_streak:
+                    type: integer
+                    description: 변경 횟수
+                  limit:
+                    type: integer
+                    description: 최대 변경 횟수
+        403:
+          description: reservations_write 권한 없음
+        406:
+          description: 신청 불가
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - not_available_date
+                      - not_started
+                      - ended
+        409:
+          description: 좌석이 비어있지 않음
+        422:
+          description: 변경 횟수 제한 초과
+          content:
+            application/json:
+              schema:
+                properties:
+                  limit:
+                    type: integer
+                    description: 최대 변경 횟수
+  '/api/v1/reservations/{date}/areas/{area}':
+    get:
+      summary: '구역(a2, s1 등)의 신청 현황 제공'
+      deprecated: true
+      description: >-
+        해당 구역의 신청 현황(신청된 좌석들)을 제공합니다. 구역의 전체 좌석 및 배치는 /api/v1/spaces/areas 에서
+        확인할 수 있습니다.
+      tags:
+        - 자습 신청
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: path
+          name: area
+          schema:
+            type: string
+            pattern: '^[abs][1-9]%'
+        - in: query
+          name: version
+          description: 제공한 버전이 현재 버전과 같으면 null을 반환합니다.
+          required: false
+      responses:
+        '200':
+          description: 구역 신청 현황(버전이 동일하면 null)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  room_name:
+                    type: string
+                  area_name:
+                    type: string
+                  occupied:
+                    type: integer
+                    description: 현재 신청된 자리 수
+                  seats:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/seat_reservation'
+                  version:
+                    type: integer
+                    description: 현재 버전
+        '403':
+          description: reservations_read 권한 없음
+        '404':
+          description: 구역 없음
+  '/api/v1/reservations/{date}/rooms/{room}':
+    get:
+      summary: 각 장소의 신청 현황 제공
+      deprecated: true
+      description: '각 장소의 모든 구역과, 그 구역에 신청한 사람 수를 제공합니다.'
+      tags:
+        - 자습 신청
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: path
+          name: room
+          schema:
+            type: string
+            pattern: '^[abs]$'
+      responses:
+        '200':
+          description: 신청 현황
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  areas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        area_name:
+                          type: string
+                        occupied:
+                          type: integer
+        '403':
+          description: reservations_read 권한 없음
+        '404':
+          description: 장소 없음
+  '/api/v1/reservations/{date}/search':
+    get:
+      summary: 사용자 검색
+      description: 현재 자습 장소를 신청한 학생의 신청 정보를 제공합니다.
+      tags:
+        - 자습 신청
+      parameters:
+        - in: path
+          name: date
+          schema:
+            type: string
+            format: date
+            pattern: '^\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$'
+        - in: query
+          name: q
+          description: 검색 쿼리. 학번 또는 이름(별칭)만 가능합니다.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 검색된 사용자가 신청한 좌석
+          content:
+            application/json:
+              schema:
+                properties:
+                  seat:
+                    type: string
+        '403':
+          description: reservations_read 권한 없음
+        '404':
+          description: 검색 결과 없음
+        '409':
+          description: 동명이인 존재, 별칭으로 검색해야 함
+        '422':
+          description: 신청하지 않은 학생
+  /api/v1/spaces/rooms:
+    get:
+      summary: 모든 자습실 정보
+      description: 모든 자습실 정보를 제공합니다. 데이터는 정적입니다.
+      tags:
+        - 자습 신청
+      security: [ ]
+      responses:
+        '200':
+          description: 자습실 정보
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    room_name:
+                      type: string
+                    description:
+                      type: string
+                    areas:
+                      type: array
+                      items:
+                        type: string
+  '/api/v1/spaces/rooms/{room}':
+    get:
+      summary: 자습실 정보
+      description: 자습실의 정보를 제공합니다. 데이터는 정적입니다.
+      tags:
+        - 자습 신청
+      security: [ ]
+      parameters:
+        - in: path
+          name: room
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 자습실 정보
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  areas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        area_name:
+                          type: string
+                        count:
+                          type: integer
+        '404':
+          description: 장소 없음
+  '/api/v1/spaces/areas/{area}':
+    get:
+      summary: 구역 정보
+      description: 구역 정보를 제공합니다. 데이터는 정적입니다.
+      tags:
+        - 자습 신청
+      security: [ ]
+      parameters:
+        - in: path
+          name: area
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 구역 정보
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  tables:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        r:
+                          type: integer
+                          description: 테이블 행
+                        c:
+                          type: integer
+                          description: 테이블 열
+                        data:
+                          type: array
+                          description: '해당 테이블의 좌석 목록, 1행 1열, ..., 1행 c열, 2행 1열, ... 순서'
+                          items:
+                            type: string
+                  vertical:
+                    type: boolean
+                    description: 테이블들이 수직으로 배치되었는지 여부
+        '404':
+          description: 구역 없음
+tags: [ ]

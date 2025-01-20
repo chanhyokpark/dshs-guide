@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="5bd046b2">
+        <description>Created after removal of "구역 정보" from Instance Name</description>
+        <accepts>구역_정보.html</accepts>
+    </rule>
+    <rule id="897c3fd">
+        <description>Created after removal of "자습실 정보" from Instance Name</description>
+        <accepts>자습실_정보.html</accepts>
+    </rule>
+    <rule id="79e1d91a">
+        <description>Created after removal of "모든 자습실 정보" from Instance Name</description>
+        <accepts>모든_자습실_정보.html</accepts>
+    </rule>
+    <rule id="6aa6488b">
+        <description>Created after removal of "사용자 검색" from Instance Name</description>
+        <accepts>사용자_검색.html</accepts>
+    </rule>
+    <rule id="402ee73f">
+        <description>Created after removal of "각 장소의 신청 현황 제공" from Instance Name</description>
+        <accepts>각_장소의_신청_현황_제공.html</accepts>
+    </rule>
+    <rule id="4b0ac337">
+        <description>Created after removal of "구역(a2, s1 등)의 신청 현황 제공" from Instance Name</description>
+        <accepts>구역_a2_s1_등_의_신청_현황_제공.html</accepts>
+    </rule>
+    <rule id="6426085d">
+        <description>Created after removal of "자습 신청하기" from Instance Name</description>
+        <accepts>자습_신청하기.html</accepts>
+    </rule>
+    <rule id="b5a1059">
+        <description>Created after removal of "자습 신청 정보" from Instance Name</description>
+        <accepts>자습_신청_정보.html</accepts>
+    </rule>
+    <rule id="38f26a82">
+        <description>Created after removal of "알림 삭제" from Instance Name</description>
+        <accepts>알림_삭제.html</accepts>
+    </rule>
+    <rule id="1845d59">
+        <description>Created after removal of "알림 읽기" from Instance Name</description>
+        <accepts>알림_읽기.html</accepts>
+    </rule>
+    <rule id="d521100">
+        <description>Created after removal of "모든 알림 삭제" from Instance Name</description>
+        <accepts>모든_알림_삭제.html</accepts>
+    </rule>
+    <rule id="48c65f98">
+        <description>Created after removal of "모든 알림 읽기" from Instance Name</description>
+        <accepts>모든_알림_읽기.html</accepts>
+    </rule>
+    <rule id="148ce581">
+        <description>Created after removal of "사용자 정보를 json으로 리턴" from Instance Name</description>
+        <accepts>사용자_정보를_json으로_리턴.html</accepts>
+    </rule>
+    <rule id="ec206de">
+        <description>Created after removal of "벌점 점수 정보" from Instance Name</description>
+        <accepts>벌점_점수_정보.html</accepts>
+    </rule>
+    <rule id="31658bf3">
+        <description>Created after removal of "전체 벌점과 기록" from Instance Name</description>
+        <accepts>전체_벌점과_기록.html</accepts>
+    </rule>
+    <rule id="b040b8e">
+        <description>Created after removal of "외출 신청 기록들" from Instance Name</description>
+        <accepts>외출_신청_기록들.html</accepts>
+    </rule>
+    <rule id="7f5024cc">
+        <description>Created after removal of "소유권 넘기기(미구현)" from Instance Name</description>
+        <accepts>소유권_넘기기_미구현_.html</accepts>
+    </rule>
+    <rule id="699f661a">
+        <description>Created after removal of "외출 신청에서 나가기" from Instance Name</description>
+        <accepts>외출_신청에서_나가기.html</accepts>
+    </rule>
+    <rule id="5a4c3d16">
+        <description>Created after removal of "외출 신청에 참여하기" from Instance Name</description>
+        <accepts>외출_신청에_참여하기.html</accepts>
+    </rule>
+    <rule id="22a0577">
+        <description>Created after removal of "외출 신청 삭제" from Instance Name</description>
+        <accepts>외출_신청_삭제.html</accepts>
+    </rule>
+    <rule id="16af00a5">
+        <description>Created after removal of "외출 신청 수정/만들기" from Instance Name</description>
+        <accepts>외출_신청_수정_만들기.html</accepts>
+    </rule>
+    <rule id="2001b26c">
+        <description>Created after removal of "외출 신청 기록" from Instance Name</description>
+        <accepts>외출_신청_기록.html</accepts>
+    </rule>
+    <rule id="1e5e5990">
+        <description>Created after removal of "급식 정보" from Instance Name</description>
+        <accepts>급식_정보.html</accepts>
+    </rule>
+    <rule id="2acc20d">
+        <description>Created after removal of "API Reference" from Instance Name</description>
+        <accepts>API_Reference.html</accepts>
+    </rule>
+    <rule id="7a1781ef">
+        <description>Created after removal of "웹사이트에서 시작하기" from DSHS.APP 가이드</description>
+        <accepts>start-web.html</accepts>
+    </rule>
+    <rule id="67ec4cdb">
+        <description>Created after removal of "웹사이트 가이드" from DSHS.APP 가이드</description>
+        <accepts>student_web.html</accepts>
+    </rule>
+</rules>

@@ -1,0 +1,825 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-http.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-none.min.js"></script><style>
+        .api-block {
+            padding: 15px 15px 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        
+
+        .api-code-green {
+            color: #4dbb5f;
+        }
+        
+
+        .api-code-red {
+            color: #fa5c4a;
+        }
+        
+
+        .api-content-type {
+            font-size: 12px;
+        }
+        
+
+        .api-endpoint {
+            display:inline-flex;
+            align-items:center;
+            padding:8px 16px;
+            margin-bottom:12px;
+            background-color: rgba(25, 25, 28, .05);
+            border-radius:8px;
+        }
+        
+
+        .api-grey-block {
+            background-color: rgba(25, 25, 28, .05);
+        }
+        
+
+        .api-grey-text {
+            color: #67686b;
+        }
+        
+
+        .api-header {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        
+
+        .api-path {
+            margin-left: 15px;
+        }
+        
+
+        .api-section {
+            width: 75%;
+            margin-bottom: 12px;
+        }
+        
+
+        .api-status-code {
+            margin-right: 8px;
+        }
+        
+
+        .api-white-block {
+            background-color: white;
+        }
+        
+
+        .article {
+            position: relative;
+            padding-bottom: 24px;
+        }
+        
+
+        .bordered-element {
+            border: 1px solid #c4c4c4;
+            overflow: hidden;
+        }
+        
+
+        .bordered-element-rounded {
+            border: 1px solid #c4c4c4;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+        
+
+        .category {
+            flex-wrap: wrap;
+            padding-top: 8px;
+        }
+        
+
+        .category-item {
+            margin-bottom: 4px;
+            margin-block-end: 0;
+        }
+        
+
+        .category-link {
+            margin-left: 0;
+            padding-inline-start: 0;
+            margin-block-start: 0;
+            padding-bottom: 4px;
+        }
+        
+
+        .category-title {
+            padding-bottom: 8px;
+        }
+        
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+
+        .center-text {
+            text-align: center;
+        }
+        
+
+        .code-block {
+            overflow: hidden;
+            position: relative;
+            padding: 0;
+            border-radius: 8px;
+            font-variant-ligatures: none;
+            background-color: rgba(25, 25, 28, .05);
+            word-break: break-all;
+        }
+        
+
+        .container {
+            max-width: 100%;
+            overflow: hidden;
+            page-break-inside: avoid;
+            display: block;
+        }
+        
+
+        .control {
+            color: #19191c;
+            font-size: 16px;
+            font-weight: 670;
+        }
+        
+
+        .def {
+            padding: 16px;
+            background: #e6e6e6;
+        }
+        
+
+        .definition-list-description {
+            margin-top: 12px;
+            margin-left: 2px;
+        }
+        
+
+        .definition-list-title {
+            font-size: 17px;
+            font-weight: 560;
+            line-height: 24px;
+            color: #19191c;
+            overflow-wrap: break-word;
+        }
+        
+
+        .detached {
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-bottom: 8px;
+        }
+        
+
+        .flex {
+            display: flex;
+        }
+        
+
+        .header-row {
+            background: #e6e6e6;
+        }
+        
+
+        .image {
+            max-width: 100%;
+            max-height: 90vh;
+            height: auto;
+        }
+        
+
+        .image-container {
+            max-width: 100vw;
+        }
+        
+
+        .image-size {
+            height: auto;
+        }
+        
+
+        .inline-code {
+            border-radius: 4px;
+            display: inline;
+            padding: 2px 1px;
+            font-family: JetBrains Sans,monospace;
+            background: #e6e6e6;
+        }
+        
+
+        .inline-icon {
+            vertical-align: middle;
+        }
+        
+
+        .keystroke {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            min-width: 22px;
+            height: 22px;
+            margin: 0 1px 2px;
+            padding: 3px;
+            border: 1px solid rgba(25, 25, 28, .2);
+            border-radius: 4px;
+            white-space: nowrap;
+            background: rgba(25, 25, 28, .05);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1em;
+            transition: border-color .5s;
+        }
+        
+
+        .keystroke-after:not(:last-child):after {
+            content: '+';
+            font-size: 10px;
+        }
+        
+
+        .list {
+            list-style-type: disc;
+            padding-left: 0;
+            margin-left: 15px;
+        }
+        
+
+        .list-decimal {
+            list-style-type: decimal;
+        }
+        
+
+        .list-item {
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: 4px;
+        }
+        
+
+        .list-none {
+            list-style-type: none;
+        }
+        
+
+        .main-title {
+            padding-bottom: 24px;
+            margin-top: 0;
+            font-size: 40px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+
+        .note {
+            background: rgba(77, 187, 95, .2);
+        }
+        
+
+        .prism {
+            page-break-inside: avoid;
+        }
+        
+        /* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+armasm+arturo+asciidoc+aspnet+asm6502+asmatmel+autohotkey+autoit+avisynth+avro-idl+awk+bash+basic+batch+bbcode+bbj+bicep+birb+bison+bnf+bqn+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+cilkc+cilkcpp+clojure+cmake+cobol+coffeescript+concurnas+csp+cooklang+coq+crystal+css-extras+csv+cue+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gap+gcode+gdscript+gedcom+gettext+gherkin+git+glsl+gn+linker-script+go+go-module+gradle+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+hoon+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keepalived+keyman+kotlin+kumir+kusto+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+magma+makefile+markdown+markup-templating+mata+matlab+maxscript+mel+mermaid+metafont+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+odin+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plant-uml+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+cshtml+jsx+tsx+reason+regex+rego+renpy+rescript+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+stata+iecst+stylus+supercollider+swift+systemd+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+tremor+turtle+twig+typescript+typoscript+unrealscript+uorazor+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+web-idl+wgsl+wiki+wolfram+wren+xeora+xml-doc+xojo+xquery+yaml+yang+zig&plugins=highlight-keywords */
+code[class*=language-],pre[class*=language-]{color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:1em;text-align:left;white-space:pre-wrap;word-spacing:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-] ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:16px;margin:0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}
+
+        
+
+        .procedure-steps {
+            box-sizing: border-box;
+            padding: 8px 8px 2px 8px;
+        }
+        
+        .procedure-steps ol {
+            margin-block-end: 0;
+            margin-block-start: 0;
+        }
+        
+
+        .prompt {
+            flex-direction: row;
+            letter-spacing: .0015em;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+
+        .prompt-content {
+            padding: 15px;
+            overflow: hidden;
+            flex: 1 1 auto;
+        }
+        
+
+        .prompt-content-p p {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+
+        .prompt-icon {
+            flex: 0 0 auto;
+            margin-left: 15px;
+            margin-top: 15px;
+            fill: currentcolor;
+            width: 24px;
+            height: 24px;
+        }
+        
+
+        :root {
+            width: 95%;
+            max-width: 95vw;
+            padding: 0 0 0 30px;
+        }
+        
+        body {
+            font-family: JetBrains Sans,serif;
+        }
+        
+        a {
+            overflow-wrap: anywhere;
+            width: 100vw;
+        }
+        
+        
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Light.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Light.woff) format("woff");
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Regular.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-Regular.woff) format("woff");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: JetBrains Sans;
+            src: url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-SemiBold.woff2) format("woff2"), url(https://resources.jetbrains.com/storage/jetbrains-sans/JetBrainsSans-SemiBold.woff) format("woff");
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        
+        code {
+            display: inline;
+            word-break: break-word;
+            font-size: 15px;
+            line-height: inherit;
+            font-variant-ligatures: none;
+            font-family: JetBrains Sans,monospace;
+            white-space: pre-line;
+            overflow-wrap: break-word;
+        }
+        
+        figcaption {
+            margin-top: 5px;
+        }
+        
+        h2 {
+            padding-top: 16px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        h3 {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        h4 {
+            padding-top: 4px;
+            padding-bottom: 8px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+        
+        p {
+            padding: 0;
+            border: 0;
+            line-height: 25px;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            padding-bottom: 8px;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            page-break-inside: avoid;
+        }
+        
+        th, td {
+            border: 1px solid #c4c4c4;
+            padding: 10px;
+            text-align: left;
+            word-break: break-all;
+        }
+        
+        .no-bold {
+            font-weight: normal; 
+        }
+        
+        .entry {
+            display: grid;
+            grid-template-columns: auto max-content;
+            grid-template-areas: "chapter page";
+            align-items: end;
+            gap: 0 .25rem;
+            line-height: 25px;
+        }
+        
+        .toc-link-container{
+            grid-area: chapter;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .toc-link{
+            text-decoration: none;
+            color: black;
+        }
+        
+        .toc-link-container::after {
+            position: absolute;
+            padding-left: .25ch;
+            content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+            text-align: right;
+        }
+        
+        .page {
+            grid-area: page;
+            width: 30px;
+            text-align: right;
+        }
+        
+
+        .secondary-title {
+            font-size: 20px;
+            margin-inline-start: 0;
+            margin-block-end: 0;
+            margin-block-start: 0;
+        }
+        
+
+        .tab-content {
+            padding: 16px;
+        }
+        
+        .tab-content > *  {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+
+        .tab-title  {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+
+        .table-wrapper {
+            overflow: hidden;
+            box-sizing: border-box;
+            font: inherit;
+        }
+        
+
+        .tip {
+            background-color: rgba(25, 25, 28, .05);
+        }
+        
+
+        .top-bottom-bordered-element {
+            padding-top: 40px;
+            overflow: hidden;
+        }
+        
+
+        .topic {
+            page-break-before: always;
+        }
+        
+
+        .warning {
+            background: rgba(244, 92, 74, .2);
+        }
+        </style><title>pdfSourceD</title></head><body><div><section class="topic"><div><article class="article"><h1 class="main-title">목차</h1><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#100361836">소개</a></div><div class="page">2</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#109757538">시작하기</a></div><div class="page">4</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-2128953865">웹사이트에서 시작하기</a></div><div class="page">5</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-2128974652">앱에서 시작하기</a></div><div class="page">7</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1879145925">학생 가이드</a></div><div class="page">9</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1573272500">홈 화면</a></div><div class="page">10</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#1097075900">자습 신청</a></div><div class="page">13</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#110414">외출 신청</a></div><div class="page">19</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-191501435">피드백</a></div><div class="page">20</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#106069776">기타</a></div><div class="page">21</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#1340337839">위젯</a></div><div class="page">22</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#937824337">안드로이드 알림 앱</a></div><div class="page">24</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#65018">API</a></div><div class="page">25</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#1401792294">API Reference</a></div><div class="page">28</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1897185137">Starter</a></div><div class="page">69</div></div><div class="entry"><div class="toc-link-container"><a class="toc-link" href="#-1565239010">기술 정보</a></div><div class="page">73</div></div></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="100361836">소개</h1><p id="100361836#uqupn6_3">dshs.app (<a href="https://dshs.app">https://dshs.app</a>)은 대전과학고등학교에서 사용하는 웹사이트이며, 독서실의 자습 자리 신청, 벌점 관리, 외출/특별실 신청 등의 기능을 가지고 있습니다.</p><section class="detached"><h2 id="100361836#uqupn6_4" data-toc="uqupn6_4#intro.md-uqupn6_4">면책 조항</h2><p id="100361836#uqupn6_8"><span class="control" id="100361836#uqupn6_10">이 문서는 대전과학고등학교의 공식 문서가 아닙니다.</span></p><p id="100361836#uqupn6_9"><span class="control" id="100361836#uqupn6_11">이 문서에서 언급된 규정은 대전과학고등학교의 공식 규정이 아니거나 현재 적용되는 규정이 아닐 수도 있습니다.</span></p></section><section class="detached"><h2 id="100361836#uqupn6_5" data-toc="uqupn6_5#intro.md-uqupn6_5">이 문서에 기여</h2><p id="100361836#uqupn6_12">GitHub 리포지토리 (<a href="https://github.com/chanhyokpark/dshs-guide">https://github.com/chanhyokpark/dshs-guide</a>)에서 이슈 또는 PR을 제출해 이 문서에 기여할 수 있습니다.</p></section><section class="detached"><h2 id="100361836#uqupn6_6" data-toc="uqupn6_6#intro.md-uqupn6_6">용어 정의</h2><dl id="100361836#uqupn6_14" date-style="title-top"><div class="def bordered-element detached"><dt id="100361836#uqupn6_15" class="definition-list-title">자습 신청</dt><dd class="definition-list-description"><p id="100361836#uqupn6_24">독서실 또는 세미나실에 2주 동안 공부할 좌석을 신청하는 것을 말합니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_16" class="definition-list-title">외출(특별실) 신청</dt><dd class="definition-list-description"><p id="100361836#uqupn6_26">연구/종교 등의 목적으로 외출하거나 자습 신청으로 신청하지 않은 장소(교실 등)에서 자습하려고 할 때 사용합니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_17" class="definition-list-title">웹사이트</dt><dd class="definition-list-description"><p id="100361836#uqupn6_28">dshs.app (<a href="https://www.dshs.app">https://www.dshs.app</a>)을 뜻합니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_18" class="definition-list-title">앱</dt><dd class="definition-list-description"><p id="100361836#uqupn6_31">iOS/macOS의 네이티브 앱인 '대전과학고등학교'를 뜻합니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_19" class="definition-list-title">독서실 좌측</dt><dd class="definition-list-description"><p id="100361836#uqupn6_33">햇빛마루, <span class="inline-code" id="100361836#uqupn6_34">axxx</span> 형식의 좌석 번호를 가지고 있습니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_20" class="definition-list-title">독서실 우측</dt><dd class="definition-list-description"><p id="100361836#uqupn6_36">달빛마루, <span class="inline-code" id="100361836#uqupn6_37">bxxx</span> 형식의 좌석 번호를 가지고 있습니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_21" class="definition-list-title">세미나실</dt><dd class="definition-list-description"><p id="100361836#uqupn6_39">별빛마루, <span class="inline-code" id="100361836#uqupn6_40">sxxx</span> 형식의 좌석 번호를 가지고 있습니다.</p></dd></div><div class="def bordered-element detached"><dt id="100361836#uqupn6_22" class="definition-list-title">벌점</dt><dd class="definition-list-description"><p id="100361836#uqupn6_42">양의 벌점은 벌점이며, 음의 벌점은 상점으로 간주합니다.</p></dd></div></dl></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="109757538">시작하기</h1><section class="detached"><h2 id="109757538#ios" data-toc="ios#start.md-ios">iOS</h2><p id="109757538#-s4ystg_6">학생의 경우 iOS 기기로 웹사이트 사용이 불가하며, 앱 사용이 필수입니다. 앱에서 시작하기 (<a href="#-2128974652">앱에서 시작하기</a>) 를 참고하세요.</p><p id="109757538#-s4ystg_7">선생님은 iOS 기기로도 웹사이트를 사용할 수 있습니다.</p></section><section class="detached"><h2 id="109757538#android-windows-linux" data-toc="android-windows-linux#start.md-android-windows-linux">Android/Windows/Linux</h2><p id="109757538#-s4ystg_9">Android/Windows/Linux 등의 기기를 사용하는 경우 웹사이트에서 시작하기 (<a href="#-2128953865">웹사이트에서 시작하기</a>) 를 참고하세요.</p></section><section class="detached"><h2 id="109757538#macos" data-toc="macos#start.md-macos">macOS</h2><p id="109757538#-s4ystg_11">macOS 기기의 경우 앱 또는 웹사이트를 모두 사용할 수 있습니다.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-2128953865">웹사이트에서 시작하기</h1><p id="-2128953865#viyj53_3">iOS 기기가 아닌 경우 웹사이트를 이용할 수 있습니다.</p><section class="detached"><h2 id="-2128953865#viyj53_4" data-toc="viyj53_4#start_web.md-viyj53_4">지원 기기/브라우저</h2><div id="-2128953865#viyj53_9"><div class="detached" id="-2128953865#viyj53_10"><div class="tab-title"><div>데스크톱</div></div><div class="bordered-element tab-content"><p id="-2128953865#viyj53_12">macOS의 Firefox, Chrome 브라우저에서 테스트되며, Windows/Linux에서 정상 작동합니다.</p><p id="-2128953865#viyj53_13">Firefox, Chrome, Safari(데스크톱) 등의 브라우저에서 작동합니다.</p></div></div><div class="detached" id="-2128953865#viyj53_11"><div class="tab-title"><div>모바일</div></div><div class="bordered-element tab-content"><p id="-2128953865#viyj53_14"><b id="-2128953865#viyj53_18">모든 iOS 브라우저는 사용할 수 없습니다. iOS의 모든 브라우저는 Safari 기반입니다.</b></p><p id="-2128953865#viyj53_15"><b id="-2128953865#viyj53_19">삼성 브라우저는 권장되지 않습니다.</b></p><p id="-2128953865#viyj53_16">Android의 Chrome 브라우저에서 테스트되었으며 Chrome 사용을 권장합니다.</p><p id="-2128953865#viyj53_17">기기의 너비가 360픽셀 미만일 경우 일부 레이아웃이 깨질 수 있습니다.</p></div></div></div></section><section class="detached"><h2 id="-2128953865#viyj53_5" data-toc="viyj53_5#start_web.md-viyj53_5">사이트에 접속</h2><p id="-2128953865#viyj53_20">웹사이트 주소는 https://www.dshs.app (<a href="https://www.dshs.app">https://www.dshs.app</a>)입니다.</p></section><section class="detached"><h2 id="-2128953865#login" data-toc="login#start_web.md-login">로그인</h2><p id="-2128953865#viyj53_22">이 사이트는 학교 소속의 Google 계정(@djshs.djsch.kr)을 사용합니다.</p><p id="-2128953865#viyj53_23">배정받은 ID 및 비밀번호를 사용해 로그인합니다.</p><p id="-2128953865#viyj53_24">만약 로그인 버튼을 누르자마자 오류가 뜬다면 이 링크 (<a href="https://accounts.google.com/AddSession">https://accounts.google.com/AddSession</a>)에서 계정을 추가한 뒤 재시도하세요.</p></section><section class="detached"><h2 id="-2128953865#pwa" data-toc="pwa#start_web.md-pwa">PWA 앱</h2><p id="-2128953865#viyj53_26">일부 Windows/Android 브라우저는 PWA(Progressive Web App) 기능을 제공합니다.</p><p id="-2128953865#viyj53_27">Android Chrome의 경우, 메뉴 &gt; 앱 설치를 선택해 앱을 설치할 수 있습니다.</p></section><section class="detached"><h2 id="-2128953865#viyj53_8" data-toc="viyj53_8#start_web.md-viyj53_8">알림</h2><p id="-2128953865#viyj53_28"><span class="control" id="-2128953865#viyj53_31">최소</span> 1개의 스마트폰에는 알림을 활성화해야 합니다.</p><p id="-2128953865#viyj53_29">Android 기기의 경우 전용 앱을 다운로드해야 합니다. 해당 문서 (<a href="#937824337">안드로이드 알림 앱</a>)를 참고하세요.</p><p id="-2128953865#viyj53_30">Windows/Linux 기기는 알림 기능을 지원하지 않습니다.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-2128974652">앱에서 시작하기</h1><p id="-2128974652#la9it6_3">iOS 기기의 경우 반드시 앱을 사용해야 합니다.</p><blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p>이 앱은 학생 전용입니다.</p></div>
+</blockquote>
+<section class="detached"><h2 id="-2128974652#la9it6_5" data-toc="la9it6_5#start_app.md-la9it6_5">요구사항</h2><div id="-2128974652#la9it6_9"><div class="detached" id="-2128974652#la9it6_10"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><p>iOS 17.0 이상 버전이 필수입니다.</p></div></div><div class="detached" id="-2128974652#la9it6_11"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><p>macOS 14.0(Sonoma) 이상 버전이 필수이며, macOS 15.0(Sequoia) 이상 버전이 권장됩니다.</p></div></div></div></section><section class="detached"><h2 id="-2128974652#la9it6_6" data-toc="la9it6_6#start_app.md-la9it6_6">앱 설치</h2><div id="-2128974652#la9it6_12"><div class="detached" id="-2128974652#la9it6_13"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><p><div class="container"><figure class="image-container"><img class="center image" id="-2128974652#la9it6_17" alt="App Store" title="App Store" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/appstore_banner.svg" width="200" height="300"><figcaption class="center-text">App Store</figcaption></figure></div> (<a href="https://apps.apple.com/app/대전과학고등학교/id6651842648">https://apps.apple.com/app/대전과학고등학교/id6651842648</a>)</p><p id="-2128974652#la9it6_16">위 이미지를 클릭한 뒤, 앱을 설치합니다.</p></div></div><div class="detached" id="-2128974652#la9it6_14"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><p>이 링크 (<a href="https://www.dshs.app/appleapps">https://www.dshs.app/appleapps</a>) 로 들어간 뒤, &quot;.dmg 파일 다운로드&quot; 링크를 눌러 다운로드합니다. 파일을 열고 앱 아이콘을 애플리케이션 폴더로 드래그해 설치합니다.</p></div></div></div></section><section class="detached"><h2 id="-2128974652#la9it6_7" data-toc="la9it6_7#start_app.md-la9it6_7">로그인</h2><p id="-2128974652#la9it6_19">웹사이트에서 시작하기 페이지의 로그인 항목 (<a href="#-2128953865#login">&quot;로그인&quot; in &quot;웹사이트에서 시작하기&quot;</a>)을 참고하세요.</p></section><section class="detached"><h2 id="-2128974652#la9it6_8" data-toc="la9it6_8#start_app.md-la9it6_8">알림 권한 허용</h2><p id="-2128974652#la9it6_21"><span class="control" id="-2128974652#la9it6_23">최소</span> 1개의 스마트폰에서는 알림을 활성화해야 합니다.</p><div id="-2128974652#la9it6_22"><div class="detached" id="-2128974652#la9it6_24"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><p>앱을 처음 시작할 때 나오는 창에서 알림 권한을 허용해야 합니다.</p></div></div><div class="detached" id="-2128974652#la9it6_25"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><p>앱을 처음 시작한 뒤 우측 상단에 나타나는 알림에서 '허용'을 선택해야 합니다.</p></div></div></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1879145925">학생 가이드</h1><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="-1879145925#vvwsf7_7">페이지 상단의 '버전'을 선택해 웹사이트 또는 앱 버전의 가이드를 볼 수 있습니다.</p></div>
+</blockquote>
+<blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="-1879145925#vvwsf7_8" data-section="웹사이트">선택된 버전: 웹사이트</p></div>
+</blockquote>
+<blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="-1879145925#vvwsf7_9" data-section="앱">선택된 버전: 앱</p></div>
+</blockquote>
+<ul class="list" id="-1879145925#vvwsf7_6" start="1"><li class="list-item" id="-1879145925#vvwsf7_10"><p>홈 화면 (<a href="#-1573272500">홈 화면</a>)</p></li><li class="list-item" id="-1879145925#vvwsf7_11"><p>자습 신청 (<a href="#1097075900">자습 신청</a>)</p></li></ul></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1573272500">홈 화면</h1><p id="-1573272500#kf45cw_3">홈 화면의 요소에 대해 다룹니다.</p><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="-1573272500#kf45cw_8" data-section="웹사이트">선택된 버전: 웹사이트</p></div>
+</blockquote>
+<blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="-1573272500#kf45cw_9" data-section="앱">선택된 버전: 앱</p></div>
+</blockquote>
+<section class="detached" data-section="웹사이트"><h2 id="-1573272500#kf45cw_6" data-toc="kf45cw_6#start_page.md-kf45cw_6">사용자 드롭다운</h2><div class="container"><figure class="image-container"><img class="center image" id="-1573272500#kf45cw_10" alt="Screenshot 2025-01-17 at 1.38.47 PM.png" title="Screenshot 2025-01-17 at 1.38.47 PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%201.38.47%E2%80%AFPM.png" width="200" height="286"><figcaption class="center-text">Screenshot 2025-01-17 at 1.38.47 PM.png</figcaption></figure></div><p id="-1573272500#kf45cw_11">화면 우측 상단의 메뉴입니다. 프로필 사진은 사용자 정보에서 변경할 수 있습니다.</p><ul class="list" id="-1573272500#kf45cw_12" start="1"><li class="list-item" id="-1573272500#kf45cw_13"><p>테마 설정: 사이트의 테마를 변경합니다.</p></li><li class="list-item" id="-1573272500#kf45cw_14"><p>사용자 정보: 프로필 정보를 봅니다.</p></li><li class="list-item" id="-1573272500#kf45cw_15"><p>계정 설정: 설정 페이지</p></li><li class="list-item" id="-1573272500#kf45cw_16"><p>피드백: 피드백 페이지</p></li><li class="list-item" id="-1573272500#kf45cw_17"><p>로그아웃: 로그아웃합니다.</p></li></ul></section><section class="detached" data-section="앱"><h2 id="-1573272500#kf45cw_7" data-toc="kf45cw_7#start_page.md-kf45cw_7">메뉴</h2><div class="container"><figure class="image-container"><img class="center image image-size" id="-1573272500#kf45cw_18" alt="Screenshot 2025-01-17 at 1.48.53 PM.png" title="Screenshot 2025-01-17 at 1.48.53 PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%201.48.53%E2%80%AFPM.png" width="1128" height="2224"><figcaption class="center-text">Screenshot 2025-01-17 at 1.48.53 PM.png</figcaption></figure></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="1097075900">자습 신청</h1><p id="1097075900#kmryde_3">자습 신청 기능에 대한 설명입니다.</p><section class="detached"><h2 id="1097075900#kmryde_4" data-toc="kmryde_4#reserve.md-kmryde_4">설명</h2><p id="1097075900#kmryde_10">학교의 독서실(일신관 4층) 또는 세미나실(일신관 3층)을 이용하기 위해서는 시스템을 이용해 원하는 자리에 신청해야 합니다. 신청한 뒤 2주 동안 해당 자리에서 자습해야 하며, 어떤 사유로 다른 곳에서 자습을 진행하려면 외출/특별실 신청을 해야 합니다.</p></section><section class="detached"><h2 id="1097075900#kmryde_5" data-toc="kmryde_5#reserve.md-kmryde_5">자습실 구조</h2><blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="1097075900#kmryde_17">모든 이미지의 허가받지 않은 사용을 금합니다.</p></div>
+</blockquote>
+<div class="image-container"><img class="center image" id="1097075900#kmryde_12" alt="Screenshot 2025-01-17 at 2.00.03 PM.png" title="Screenshot 2025-01-17 at 2.00.03 PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%202.00.03%E2%80%AFPM.png" width="500" height="200"></div><p id="1097075900#kmryde_13">시스템 상에서 자습실은 크게 3개의 공간으로 나뉘어져 있고, 각 공간은 여러 '구역'으로 나뉘어져 있습니다.</p><section class="detached"><h3 id="1097075900#kmryde_14" data-toc="kmryde_14#reserve.md-kmryde_14">독서실 좌측</h3><div class="image-container"><img class="center image" id="1097075900#kmryde_18" alt="a_labeled.png" title="a_labeled.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/a_labeled.png" width="500" height="307"></div><p id="1097075900#kmryde_19">a1~a8로 나뉘어져 있습니다. a1 및 a8이 창가에 있습니다.</p></section><section class="detached"><h3 id="1097075900#kmryde_15" data-toc="kmryde_15#reserve.md-kmryde_15">독서실 우측</h3><div class="image-container"><img class="center image" id="1097075900#kmryde_20" alt="b_labeled.png" title="b_labeled.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/b_labeled.png" width="500" height="366"></div><p id="1097075900#kmryde_21">b1~b9로 나뉘어져 있습니다. b1 및 b8이 창가에 있습니다.</p></section><section class="detached"><h3 id="1097075900#kmryde_16" data-toc="kmryde_16#reserve.md-kmryde_16">세미나실</h3><p id="1097075900#kmryde_22">일신관 3층에 있으며, s1(세미나실 1)~s6(세미나실 6)으로 나뉘어져 있습니다. 미신청할 경우 이곳에 임의 배정됩니다.</p><blockquote class="prompt flex bordered-element-rounded tip detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="1097075900#kmryde_24">세미나실은 시스템 화면 기준으로 아래쪽이 문 방향이고, 위쪽이 창가 방향입니다.</p></div>
+</blockquote>
+</section></section><section class="detached"><h2 id="1097075900#kmryde_6" data-toc="kmryde_6#reserve.md-kmryde_6">신청 규칙</h2><ul class="list" id="1097075900#kmryde_25" start="1"><li class="list-item" id="1097075900#kmryde_26"><p>신청은 보통 <span class="control" id="1097075900#kmryde_35">귀가주 목요일 9시~11시</span>에 진행됩니다. 신청 후 장소 이동은 보통 <span class="control" id="1097075900#kmryde_36">신청 다음날(금요일) 청소시간</span>에 진행됩니다. 시간은 여러 요인으로 인해 변경될 수 있습니다.</p></li><li class="list-item" id="1097075900#kmryde_27"><p>신청은 실시간으로 진행되며, 누군가가 신청할 때마다 거의 즉시 시스템에 반영됩니다.</p></li><li class="list-item" id="1097075900#kmryde_28"><p>신청은 무조건 선착순입니다.</p></li><li class="list-item" id="1097075900#kmryde_29"><p><span class="control" id="1097075900#kmryde_37">신청이 시작되기 전에 자리를 누를 경우 무효 클릭으로 간주되며, 해당 기기에서 5초 동안 신청이 제한됩니다.</span></p></li><li class="list-item" id="1097075900#kmryde_30"><p>신청할 경우 <span class="control" id="1097075900#kmryde_38">성공/실패 여부와 관계없이  5초 동안 신청이 제한됩니다.</span></p></li><li class="list-item" id="1097075900#kmryde_31"><p>신청을 변경할 수 있는 횟수는 <span class="control" id="1097075900#kmryde_40">최대 10회</span>이며, 최초 신청도 이 횟수에 포함됩니다.</p></li><li class="list-item" id="1097075900#kmryde_32"><p>미신청자는 신청이 끝난 뒤 <span class="control" id="1097075900#kmryde_41">벌점 0.5점이 부여되고, 세미나실에 임의 배정됩니다.</span> (양옆이 비어 있는 자리에 우선 배정됩니다)</p></li><li class="list-item" id="1097075900#kmryde_33"><p>미신청자가 존재하지만 세미나실이 가득 찬 경우 담당 선생님에 의해 독서실에 배정됩니다.</p></li><li class="list-item" id="1097075900#kmryde_34"><p>자리를 취소할 수 있지만 변경 횟수가 10 미만일 경우에만 가능합니다. 또한, 신청이 끝났을 때 새로운 자리에 신청하지 않았다면 미신청자로 간주됩니다.</p></li></ul></section><section class="detached"><h2 id="1097075900#warn" data-toc="warn#reserve.md-warn">유의사항</h2><p id="1097075900#kmryde_42">이 시스템은 실시간으로 정보를 업데이트하는 방식을 사용하기 때문에 인터넷 연결이 끊어질 경우 일부 업데이트가 누락될 수 있습니다.</p><p id="1097075900#kmryde_43">일반적으로 누락 오류가 발생할 경우 자동으로 데이터를 다시 불러옵니다.</p></section><section class="detached" data-section="웹사이트"><h2 id="1097075900#kmryde_8" data-toc="kmryde_8#reserve.md-kmryde_8">신청 방법(웹사이트)</h2></section><section class="detached" data-section="앱"><h2 id="1097075900#kmryde_9" data-toc="kmryde_9#reserve.md-kmryde_9">신청 방법(앱)</h2><p id="1097075900#kmryde_44">macOS에서의 화면은 iOS에서의 화면과 대동소이합니다.</p><div class="container"><figure class="image-container"><img class="center image" id="1097075900#kmryde_45" alt="Screenshot 2025-01-17 at 2.23.39PM.png" title="Screenshot 2025-01-17 at 2.23.39PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%202.23.39%E2%80%AFPM.png" width="300" height="268"><figcaption class="center-text">Screenshot 2025-01-17 at 2.23.39PM.png</figcaption></figure></div><p id="1097075900#kmryde_46">현재 신청 현황을 보고 싶으면 '오늘'을, 내일부터 사용할 자리를 신청하려면 '내일'을 선택합니다.</p><section class="detached"><h3 id="1097075900#kmryde_47" data-toc="kmryde_47#reserve.md-kmryde_47">신청하기</h3><p id="1097075900#kmryde_52">원하는 장소와 구역을 선택합니다.</p><div class="container"><figure class="image-container"><img class="center image" id="1097075900#kmryde_53" alt="Screenshot 2025-01-17 at 2.27.37 PM.png" title="Screenshot 2025-01-17 at 2.27.37 PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%202.27.37%E2%80%AFPM.png" width="300" height="327"><figcaption class="center-text">Screenshot 2025-01-17 at 2.27.37 PM.png</figcaption></figure></div><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="1097075900#kmryde_57">앱에서는 '최적화된 구역 레이아웃 사용'이 기본값입니다. 이를 사용할 경우 구역의 자리 배치를 일부 변경하는 대신 최대한 많은 좌석이 한 화면에 표시됩니다. 설정에서 비활성화할 수 있습니다.</p></div>
+</blockquote>
+<p id="1097075900#kmryde_55">신청이 시작되면 버튼 색이 초록색으로 변합니다. 원하는 장소를 탭해서 신청합니다.</p><p id="1097075900#kmryde_56">신청한 구역으로 빠르게 이동하려면 좌측 하단의 신청한 장소를 누릅니다.</p></section><section class="detached"><h3 id="1097075900#kmryde_48" data-toc="kmryde_48#reserve.md-kmryde_48">새로고침하기</h3><p id="1097075900#kmryde_58">일반적인 경우 새로고침이 필요하지 않지만, 유의사항 (<a href="#1097075900#warn">&quot;유의사항&quot; in &quot;자습 신청&quot;</a>) 에서 언급한 것처럼 특정 상황에서는 동기화 오류가 발생할 수 있습니다.</p><div id="1097075900#kmryde_59"><div class="detached" id="1097075900#kmryde_61"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><p>다른 앱에서 새로고침하는 것처럼 화면을 밑으로 당깁니다.</p></div></div><div class="detached" id="1097075900#kmryde_62"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><p>툴바의 새로고침 버튼을 누릅니다.</p></div></div></div></section><section class="detached"><h3 id="1097075900#kmryde_49" data-toc="kmryde_49#reserve.md-kmryde_49">학생 검색하기</h3><p id="1097075900#kmryde_63">검색창을 이용해 학생을 검색할 수 있습니다.</p><div id="1097075900#kmryde_64"><div class="detached" id="1097075900#kmryde_66"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><p>iPad에서는 우측 상단에 검색바가 있습니다. </p><p id="1097075900#kmryde_68">iPhone에서는 화면을 밑으로 당기면 검색바가 나옵니다.</p><blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p>iPad에서 키보드를 사용할 시 <span class="no-bold">🌐</span>버튼으로 언어를 전환하면 검색이 작동하지 않는 버그가 있습니다.</p></div>
+</blockquote>
+</div></div><div class="detached" id="1097075900#kmryde_67"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><p>우측 상단에 검색바가 있습니다.</p></div></div></div><section class="procedure-steps bordered-element detached"><h3 id="1097075900#kmryde_65">검색 방법</h3><ol class="list list-decimal"><li class="list-item" id="1097075900#kmryde_70"><p id="1097075900#kmryde_73">학생의 학번, 이름(2글자도 가능)</p><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p>동명이인이 존재하는 경우 (이름)1, (이름)2, ...와 같은 형식으로 검색해야 합니다.</p></div>
+</blockquote>
+</li><li class="list-item" id="1097075900#kmryde_71"><p id="1097075900#kmryde_75">좌석 번호</p></li><li class="list-item" id="1097075900#kmryde_72"><p id="1097075900#kmryde_76">구역 번호</p></li></ol></section></section><section class="detached"><h3 id="1097075900#kmryde_50" data-toc="kmryde_50#reserve.md-kmryde_50">표시되는 정보</h3><div class="container"><figure class="image-container"><img class="center image image-size" id="1097075900#kmryde_77" alt="좌석 버튼 이미지" title="좌석 버튼 이미지" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%202.32.41%E2%80%AFPM.png" width="176" height="126"><figcaption class="center-text">좌석 버튼 이미지</figcaption></figure></div><ul class="list" id="1097075900#kmryde_78" start="1"><li class="list-item" id="1097075900#kmryde_81"><p><span class="inline-code" id="1097075900#kmryde_84">1</span>: 학년</p></li><li class="list-item" id="1097075900#kmryde_82"><p><span class="inline-code" id="1097075900#kmryde_85">푸른색</span>: 성별</p></li><li class="list-item" id="1097075900#kmryde_83"><p><span class="inline-code" id="1097075900#kmryde_86">테스터</span>: 이름, 동명이인이 존재할 경우 '테스터1' 등으로 표시됩니다.</p></li></ul><p id="1097075900#kmryde_79">학년 및 성별 표시는 설정에서 끌 수 있습니다.</p><p id="1097075900#kmryde_80">버튼을 길게 눌러(macOS의 경우 우클릭) 자세한 정보를 볼 수 있습니다.</p></section><section class="detached"><h3 id="1097075900#kmryde_51" data-toc="kmryde_51#reserve.md-kmryde_51">로그 화면 보기</h3><p id="1097075900#kmryde_87">로그 화면에서 신청 로그 및 여러 정보를 보거나 시간을 서버와 동기화할 수 있습니다.</p><p id="1097075900#kmryde_88">로그 화면을 열려면 화면 우측 상단의 <img class="inline-icon image image-container" id="1097075900#kmryde_90" alt="Screenshot 2025-01-17 at 2.39.18 PM.png" title="Screenshot 2025-01-17 at 2.39.18 PM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-17%20at%202.39.18%E2%80%AFPM.png" width="50" height="42"> 버튼을 누릅니다.</p><section class="detached"><h4 id="1097075900#kmryde_89" data-toc="kmryde_89#reserve.md-kmryde_89">시간 보정하기</h4><p id="1097075900#kmryde_91">기기의 시간이 정확하지 않다면 서버 시간과 2~5초 정도 오차가 생길 수 있습니다. 보정하려면 로그 화면에서 <span class="inline-code" id="1097075900#kmryde_94">시간 보정하기</span> 버튼을 1초 간격을 두고 몇 번 누릅니다.</p><blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="1097075900#kmryde_95">표시되는 오차는 보정된 시간을 뜻하며, 보정을 한 상태라면 오차가 낮거나 높아서 생기는 불이익은 없습니다. 50ms 이하의 오차는 무의미합니다.</p></div>
+</blockquote>
+<blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="1097075900#kmryde_96">'서버시간' 등의 사이트를 이용하는 것은 무의미합니다.</p></div>
+</blockquote>
+</section></section></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="110414">외출 신청</h1><p id="110414#fgx6y8_3">외출 신청 기능에 대한 설명입니다.</p><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="110414#fgx6y8_6">이 문서 및 앱, 웹사이트에서 '외출 신청'은 '외출/특별실 신청'을 뜻합니다.</p></div>
+</blockquote>
+<section class="detached"><h2 id="110414#fgx6y8_5" data-toc="fgx6y8_5#out.md-fgx6y8_5">설명</h2><p id="110414#fgx6y8_7">모든 학생은 공강/야자 시간에 기본적으로 자습 신청 (<a href="#1097075900">자습 신청</a>) 을 통해 신청한 자리에서 자습해야 합니다. 어떤 이유로 인해 그 시간에 다른 장소를 사용하고 싶다면 특별실 신청을 하고 승인받아야 합니다.</p><p id="110414#fgx6y8_8">외출 신청은 그냥 외출 신청입니다.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-191501435">피드백</h1><p id="-191501435#z4m5v5z_3">필요한 기능이 있거나 사이트에 불편한 점이 있다면 피드백 페이지를 이용할 수 있습니다.</p><section class="detached"><h2 id="-191501435#z4m5v5z_4" data-toc="z4m5v5z_4#feedback.md-z4m5v5z_4">유의사항</h2><ul class="list" id="-191501435#z4m5v5z_7" start="1"><li class="list-item" id="-191501435#z4m5v5z_8"><p>피드백은 GitHub 리포지토리 (<a href="https://github.com/chanhyokpark/dshs-app/issues">https://github.com/chanhyokpark/dshs-app/issues</a>)에 제출되며, 모든 사람이 볼 수 있습니다. 개인정보를 포함하지 마세요.</p></li><li class="list-item" id="-191501435#z4m5v5z_9"><p>제출하기 전에 이 가이드를 숙지했으며, 겹치는 내용이 위 리포지토리에 없는지 확인하세요.</p></li><li class="list-item" id="-191501435#z4m5v5z_10"><p>피드백에는 암호화된 사용자 id가 포함되기 때문에 개발자는 사용자 정보를 확인할 수 있습니다.</p></li><li class="list-item" id="-191501435#z4m5v5z_11"><p>안드로이드 앱의 기능 추가 요청은 받지 않습니다.</p></li><li class="list-item" id="-191501435#z4m5v5z_12"><p>iOS 앱에서 피드백을 제출할 경우 OS 버전, 기기명 등의 정보가 함께 제출됩니다. iOS 앱의 오류일 경우 무조건 앱을 사용해서 피드백을 제출하세요.</p></li></ul></section><section class="detached" data-section="웹사이트"><h2 id="-191501435#z4m5v5z_5" data-toc="z4m5v5z_5#feedback.md-z4m5v5z_5">제출 방법(웹)</h2><p id="-191501435#z4m5v5z_14">https://www.dshs.app/feedback (<a href="https://www.dshs.app/feedback">https://www.dshs.app/feedback</a>) 에 접속하고, 알맞은 항목을 선택한 뒤 제목, 내용을 입력합니다.</p></section><section class="detached" data-section="앱"><h2 id="-191501435#z4m5v5z_6" data-toc="z4m5v5z_6#feedback.md-z4m5v5z_6">제출 방법(앱)</h2><p id="-191501435#z4m5v5z_16">홈 화면에서 피드백을 누르고 알맞은 항목을 선택한 뒤 제목, 내용을 입력합니다.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="106069776">기타</h1><p id="106069776#z1qw5ym_3">Start typing here...</p></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="1340337839">위젯</h1><p id="1340337839#-r4vuvl_3">iOS, macOS 앱에서는 벌점 위젯과 급식 위젯을 제공합니다.</p><section class="detached"><h2 id="1340337839#-r4vuvl_4" data-toc="-r4vuvl_4#widgets.md--r4vuvl_4">위젯 종류</h2><section class="detached"><h3 id="1340337839#-r4vuvl_6" data-toc="-r4vuvl_6#widgets.md--r4vuvl_6">벌점 위젯</h3><div class="container"><figure class="image-container"><img class="center image" id="1340337839#-r4vuvl_8" alt="Screenshot 2025-01-18 at 9.50.52 AM.png" title="Screenshot 2025-01-18 at 9.50.52 AM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-18%20at%209.50.52%E2%80%AFAM.png" width="200" height="198"><figcaption class="center-text">Screenshot 2025-01-18 at 9.50.52 AM.png</figcaption></figure></div><p id="1340337839#-r4vuvl_9">현재 벌점을 표시합니다. 원형 게이지의 수치는 다음 징계까지 남은 점수를 나타냅니다. 홈 화면 및 잠금 화면에 배치할 수 있습니다.</p></section><section class="detached"><h3 id="1340337839#-r4vuvl_7" data-toc="-r4vuvl_7#widgets.md--r4vuvl_7">급식 위젯</h3><div class="container"><figure class="image-container"><img class="center image" id="1340337839#-r4vuvl_10" alt="Screenshot 2025-01-18 at 9.53.22 AM.png" title="Screenshot 2025-01-18 at 9.53.22 AM.png" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/Screenshot%202025-01-18%20at%209.53.22%E2%80%AFAM.png" width="300" height="154"><figcaption class="center-text">Screenshot 2025-01-18 at 9.53.22 AM.png</figcaption></figure></div><p id="1340337839#-r4vuvl_11">다음 급식을 표시합니다. 1*2 크기와 2*2 크기를 지원합니다. 홈 화면에 배치할 수 있습니다.</p></section></section><section class="detached"><h2 id="1340337839#-r4vuvl_5" data-toc="-r4vuvl_5#widgets.md--r4vuvl_5">위젯 설치하기</h2><div id="1340337839#-r4vuvl_12"><div class="detached" id="1340337839#-r4vuvl_13"><div class="tab-title"><div>iOS</div></div><div class="bordered-element tab-content"><section class="procedure-steps bordered-element detached"><h3 id="1340337839#-r4vuvl_15">위젯 설치하기</h3><ol class="list list-decimal"><li class="list-item" id="1340337839#-r4vuvl_16"><p>iPhone의 홈 화면으로 들어간 뒤 홈 화면을 길게 누르고, 상단 + 버튼을 누릅니다.</p></li><li class="list-item" id="1340337839#-r4vuvl_17"><p>위젯을 선택하고 '대전과학고등학교' 앱을 검색합니다.</p></li><li class="list-item" id="1340337839#-r4vuvl_18"><p>원하는 위젯을 배치합니다.</p></li></ol></section></div></div><div class="detached" id="1340337839#-r4vuvl_14"><div class="tab-title"><div>macOS</div></div><div class="bordered-element tab-content"><section class="procedure-steps bordered-element detached"><h3 id="1340337839#-r4vuvl_19">위젯 설치하기</h3><ol class="list list-decimal"><li class="list-item" id="1340337839#-r4vuvl_20"><p>알림 센터 (<a href="https://support.apple.com/ko-kr/guide/mac-help/mchl2fb1258f/mac">https://support.apple.com/ko-kr/guide/mac-help/mchl2fb1258f/mac</a>) 를 엽니다.</p></li><li class="list-item" id="1340337839#-r4vuvl_21"><p>`위젯 편집...`을 누르고 대전과학고등학교 앱을 선택합니다.</p></li><li class="list-item" id="1340337839#-r4vuvl_22"><p>원하는 위젯을 알림 센터 또는 바탕화면에 배치합니다.</p></li></ol></section></div></div></div></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="937824337">안드로이드 알림 앱</h1><p id="937824337#gfgfbh_3">Android의 경우 알림 기능만 가지고 있는 앱을 지원합니다. 앱은 오직 알림 기능만 지원하며 그 외의 어떠한 동작도 하지 않습니다. 피드백 기능으로 문의하면 소스 코드를 드립니다.</p><blockquote class="prompt flex bordered-element-rounded note detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM10.5 7.5A1.5 1.5 0 1 0 12 6a1.5 1.5 0 0 0-1.5 1.5zm-.5 3.54v1h1V18h2v-6a.96.96 0 0 0-.96-.96z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="937824337#gfgfbh_7">Android의 앱 형식으로 웹사이트를 사용하고 싶다면 PWA (<a href="#-2128953865#pwa">&quot;PWA 앱&quot; in &quot;웹사이트에서 시작하기&quot;</a>) 문서를 참고하세요.</p></div>
+</blockquote>
+<section class="detached"><h2 id="937824337#gfgfbh_5" data-toc="gfgfbh_5#android_app.md-gfgfbh_5">설치</h2><p id="937824337#gfgfbh_9">앱이 너무 단순하기 때문에 Google Play Store를 사용하지 않습니다.</p><p id="937824337#gfgfbh_10"><span id="937824337#gfgfbh_12">APK 파일 다운로드 (dshs.apk)</span></p><ol class="list list-decimal" id="937824337#gfgfbh_11" type="1" start="1"><li class="list-item" id="937824337#gfgfbh_13"><p>다운로드한 APK 파일을 열고 설치합니다. 브라우저의 '출처를 알 수 없는 앱 설치' 권한을 허용해야 할 수 있습니다.</p></li><li class="list-item" id="937824337#gfgfbh_14"><p>앱을 연 뒤, 알림 권한을 허용합니다. 거부한 경우 앱을 삭제한 뒤 재설치합니다.</p></li><li class="list-item" id="937824337#gfgfbh_15"><p>앱의 지시에 따라 로그인 절차를 수행합니다. (앱 이름이 macOS/iOS라고 뜨지만 무시하세요)</p></li><li class="list-item" id="937824337#gfgfbh_16"><p>로그인이 완료되면 알림 기능이 앱을 삭제할 때까지 작동합니다.</p></li></ol></section><section class="detached"><h2 id="937824337#gfgfbh_6" data-toc="gfgfbh_6#android_app.md-gfgfbh_6">지원</h2><p id="937824337#gfgfbh_17">Android 앱은 알림 기능만 지원하며, 위젯 등의 부가기능은 지원하지 않습니다.</p><p id="937824337#gfgfbh_18">알림 기능이 작동하지 않는 경우 앱을 삭제한 뒤 재설치하세요.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="65018">API</h1><p id="65018#-6w99ks_3">dshs.app에는 자습 신청, 벌점 확인, 외출 신청, 급식 조회 등을 지원하는 REST API가 구현되어 있습니다.</p><blockquote class="prompt flex bordered-element-rounded warning detached">
+  <svg xmlns="http://www.w3.org/2000/svg" class="prompt-icon">
+    <path d="M12.946 3.552L21.52 18.4c.424.735.33 1.6-.519 1.6H3.855c-.85 0-1.817-.865-1.392-1.6l8.573-14.848a1.103 1.103 0 0 1 1.91 0zm.545 12.948a1.5 1.5 0 1 0-1.5 1.5 1.5 1.5 0 0 0 1.5-1.5zM13 8h-2v5h2z"></path>
+  </svg>
+  <div class="prompt-content prompt-content-p"><p id="65018#-6w99ks_9"><span class="control" id="65018#-6w99ks_10">공개된 API를 사용하지 않고 Selenium. Puppeteer 등의 도구를 이용하거나 API로 자동화 프로그램을 구현하는 것은 절대 허용되지 않습니다.</span></p></div>
+</blockquote>
+<section class="detached"><h2 id="65018#api_1" data-toc="api_1#API.md-api_1">API 키 발급</h2><p id="65018#-6w99ks_11">API를 사용하려면 API 키를 받아야 합니다.</p><ol class="list list-decimal" id="65018#-6w99ks_12" type="1" start="1"><li class="list-item" id="65018#-6w99ks_13"><p>피드백 페이지에서 다음 정보를 제출합니다: </p><ul class="list" id="65018#-6w99ks_15" start="1"><li class="list-item" id="65018#-6w99ks_16"><p>API의 사용 목적</p></li><li class="list-item" id="65018#-6w99ks_17"><p>클라이언트의 이름 및 설명</p></li><li class="list-item" id="65018#-6w99ks_18"><p>리다이렉트 URL 목록</p></li><li class="list-item" id="65018#-6w99ks_19"><p>필요한 권한 목록</p></li></ul></li><li class="list-item" id="65018#-6w99ks_14"><p>요청이 승인되면 Client ID 및 Client Secret이 이메일로 발송됩니다.</p></li></ol></section><section class="detached"><h2 id="65018#-6w99ks_6" data-toc="-6w99ks_6#API.md--6w99ks_6">인증 방법</h2><p id="65018#-6w99ks_20">급식 조회를 제외한 모든 API는 OAuth 2.0 인증 방식 중 Authorization Code Grant 방식만을 지원합니다.</p><p id="65018#-6w99ks_21">Access Token은 발급받은 뒤 30일간 유효하며, Refresh Token은 지원하지 않습니다.</p><section class="detached"><h3 id="65018#1" data-toc="1#API.md-1">1. 사용자 인증 요청</h3><div class="detached code-block" id="65018#-6w99ks_24"><pre><code class="language-http">GET https://www.dshs.app/authorize</code></pre></div><p id="65018#-6w99ks_25">매개변수</p><div class="table-wrapper detached"><table id="65018#-6w99ks_26"><tr class="header-row" id="65018#-6w99ks_28"><th id="65018#-6w99ks_32"><p>이름</p></th><th id="65018#-6w99ks_33"><p>필수</p></th><th id="65018#-6w99ks_34"><p>설명</p></th></tr><tr class="" id="65018#-6w99ks_29"><td id="65018#-6w99ks_35"><p>client_id</p></td><td id="65018#-6w99ks_36"><p>필수</p></td><td id="65018#-6w99ks_37"><p>발급받은 Client ID</p></td></tr><tr class="" id="65018#-6w99ks_30"><td id="65018#-6w99ks_38"><p>redirect_uri</p></td><td id="65018#-6w99ks_39"><p>필수</p></td><td id="65018#-6w99ks_40"><p>인증 코드를 받을 URL</p></td></tr><tr class="" id="65018#-6w99ks_31"><td id="65018#-6w99ks_41"><p>state</p></td><td id="65018#-6w99ks_42"><p>선택</p></td><td id="65018#-6w99ks_43"><p>CSRF 방지용 문자열</p></td></tr></table></div><p id="65018#-6w99ks_27">인증 코드는 <span class="inline-code" id="65018#-6w99ks_44">GET {REDIRECT_URI}?code={CODE}</span> 형식으로 전달됩니다.</p></section><section class="detached"><h3 id="65018#2-access-token" data-toc="2-access-token#API.md-2-access-token">2. Access Token 발급</h3><div class="detached code-block" id="65018#-6w99ks_45"><pre><code class="language-http">POST https://www.dshs.app/api/v1/token
+Content-Type: application/x-www-form-urlencoded</code></pre></div><p id="65018#-6w99ks_46">매개변수</p><div class="table-wrapper detached"><table id="65018#-6w99ks_47"><tr class="header-row" id="65018#-6w99ks_50"><th id="65018#-6w99ks_55"><p>이름</p></th><th id="65018#-6w99ks_56"><p>필수</p></th><th id="65018#-6w99ks_57"><p>설명</p></th></tr><tr class="" id="65018#-6w99ks_51"><td id="65018#-6w99ks_58"><p>grant_type</p></td><td id="65018#-6w99ks_59"><p>필수</p></td><td id="65018#-6w99ks_60"><p>반드시 &quot;authorization_code&quot;여야 함</p></td></tr><tr class="" id="65018#-6w99ks_52"><td id="65018#-6w99ks_61"><p>client_id</p></td><td id="65018#-6w99ks_62"><p>필수</p></td><td id="65018#-6w99ks_63"><p>발급받은 Client ID</p></td></tr><tr class="" id="65018#-6w99ks_53"><td id="65018#-6w99ks_64"><p>client_secret</p></td><td id="65018#-6w99ks_65"><p>필수</p></td><td id="65018#-6w99ks_66"><p>Client Secret</p></td></tr><tr class="" id="65018#-6w99ks_54"><td id="65018#-6w99ks_67"><p>code</p></td><td id="65018#-6w99ks_68"><p>필수</p></td><td id="65018#-6w99ks_69"><p>인증 코드</p></td></tr></table></div><p id="65018#-6w99ks_48">응답</p><div class="detached code-block" id="65018#-6w99ks_49"><pre><code class="language-json">{
+  &quot;access_token&quot;: &quot;{ACCESS_TOKEN}&quot;,
+  &quot;token_type&quot;: &quot;Bearer&quot;,
+  &quot;expires_in&quot;: 2592000, 
+  &quot;scope&quot;: &quot;{SCOPE}&quot;
+}</code></pre></div></section></section><section class="detached"><h2 id="65018#api_2" data-toc="api_2#API.md-api_2">API 호출</h2><p id="65018#-6w99ks_70">모든 API 요청에는 발급받은 Access Token을 Authorization 헤더에 포함해야 합니다.</p><p id="65018#-6w99ks_71">예시</p><div class="detached code-block" id="65018#-6w99ks_72"><pre><code class="language-http">GET https://www.dshs.app/api/v1/userinfo
+Authorization: Bearer {ACCESS_TOKEN}</code></pre></div></section><section class="detached"><h2 id="65018#api_3" data-toc="api_3#API.md-api_3">API 목록</h2><p id="65018#-6w99ks_73">웹사이트의 API 문서 (<a href="https://www.dshs.app/api-doc">https://www.dshs.app/api-doc</a>) 또는 이 문서의 레퍼런스 (<a href="#1401792294">API Reference</a>)를 참고하세요.</p></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="1401792294">API Reference</h1><p id="1401792294#dg6572_2">스코프 목록을 보거나 API를 시도해 보려면 사이트의 API 문서 (<a href="https://www.dshs.app/api-doc">https://www.dshs.app/api-doc</a>) 를 참조하세요</p><section class="detached"><h2 id="1401792294#dg6572_32" data-toc="dg6572_32#API_Reference.topic-dg6572_32">급식 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/meals/{date}</span></div><p id="1401792294#dg6572_34">해당 날짜의 급식 정보를 반환합니다. 출처는 NEIS API이며, 알레르기 표시, 조식 표시를 제거한 뒤 제공됩니다.</p><section class="detached"><h3 id="1401792294#dg6572_35" data-toc="dg6572_35#API_Reference.topic-dg6572_35">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_36" data-toc="dg6572_36#API_Reference.topic-dg6572_36">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>급식 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>급식 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">Array of string</span></p><p>아침, 점심, 저녁(없으면 빈 문자열)</p></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_43"><pre><code class="language-json">[
+  &quot;example&quot;
+]</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>잘못된 형식의 날짜</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>잘못된 형식의 날짜</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>존재하지 않는 날짜</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>존재하지 않는 날짜</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_51" data-toc="dg6572_51#API_Reference.topic-dg6572_51">외출 신청 기록</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/outrequests/{id}</span></div><p id="1401792294#dg6572_53">해당 id의 외출 신청 기록을 제공하거나 새로운 외출 신청의 템플릿을 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_54" data-toc="dg6572_54#API_Reference.topic-dg6572_54">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p><p>외출 신청의 id, 새로운 신청의 데이터이면 new</p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_55" data-toc="dg6572_55#API_Reference.topic-dg6572_55">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>외출 신청 기록</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>외출 신청 기록</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requestId</b><span class="api-grey-text">string</span></p><p>신청 기록의 id</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requester</b><span class="api-grey-text">user</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">student_id</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">sex</b><span class="api-grey-text">Enum</span></p><p>사용자 성별, 자습 신청 관련 경로에서만 제공됩니다. m은 남성, f는 여셩입니다.</p><p class="api-content-type">Enum elements</p><div class="api-block api-grey-block"><p>m, f</p></div></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">users</b><span class="api-grey-text">Array of user</span></p><p>참여자 목록</p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">student_id</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">sex</b><span class="api-grey-text">Enum</span></p><p>사용자 성별, 자습 신청 관련 경로에서만 제공됩니다. m은 남성, f는 여셩입니다.</p><p class="api-content-type">Enum elements</p><div class="api-block api-grey-block"><p>m, f</p></div></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date_request</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date_from</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date_to</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">category</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">reason</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">status</b><span class="api-grey-text">integer</span></p><p>0: 대기 중, 1: 승인, -1: 거부</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">share</b><span class="api-grey-text">integer</span></p><p>0: 비공개, 1: 링크 공유, 2: 전체 공개</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">actions</b><span class="api-grey-text">Array of Enum</span></p><p>가능한 동작: * `modify` - 수정 * `delete` - 삭제 * `participate` - 참여 * `escape` - 나가기 * `force_escape` - 퇴출시키기 * `transit` - 소유권 넘기기
+</p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"></div><div class="api-block api-white-block"></div><div class="api-block api-white-block"></div><div class="api-block api-white-block"></div><div class="api-block api-white-block"></div><div class="api-block api-white-block"></div></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_63"><pre><code class="language-json">{
+  &quot;requestId&quot;: &quot;example&quot;,
+  &quot;requester&quot;: {
+    &quot;name&quot;: &quot;example&quot;,
+    &quot;student_id&quot;: &quot;example&quot;,
+    &quot;sex&quot;: &quot;m&quot;
+  },
+  &quot;users&quot;: [
+    {
+      &quot;name&quot;: &quot;example&quot;,
+      &quot;student_id&quot;: &quot;example&quot;,
+      &quot;sex&quot;: &quot;m&quot;
+    }
+  ],
+  &quot;date_request&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;date_from&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;date_to&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;category&quot;: &quot;example&quot;,
+  &quot;reason&quot;: &quot;example&quot;,
+  &quot;status&quot;: 58,
+  &quot;share&quot;: 58,
+  &quot;actions&quot;: [
+    &quot;modify&quot;
+  ]
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequests_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequests_read 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>id를 찾을 수 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>id를 찾을 수 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 id</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>올바르지 않은 id</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_73" data-toc="dg6572_73#API_Reference.topic-dg6572_73">외출 신청 수정/만들기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-POST-28B8A0" title="POST method"><span class="api-path">/api/v1/outrequests/{id}</span></div><p id="1401792294#dg6572_75">외출 신청을 수정하거나 새로 만듭니다. 새로 만드려면 id를 new로 설정하세요.</p><section class="detached"><h3 id="1401792294#dg6572_76" data-toc="dg6572_76#API_Reference.topic-dg6572_76">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div><div class="api-section"><p><b>Body</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">category</b><span class="api-grey-text">Enum</span></p><p class="api-content-type">Enum elements</p><div class="api-block api-grey-block"><p>특별실 신청, 일반외출, 일반외박, 연구외출, 연구외박</p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">reason</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">date_from</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">date_to</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">share</b><span class="api-grey-text">integer</span></p><p>0: 비공개, 1: 링크 공유, 2: 전체 공개</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">force</b><span class="api-grey-text">boolean</span></p><p>400 오류에서 force_available이 true일 경우 오류를 무시하고 신청합니다. 반드시 기본값을 false로 설정하세요.</p></div></div></div><div><p><b>JSON example</b></p><div class="code-block detached" id="dg6572_81"><pre><code class="language-json">{
+  &quot;category&quot;: &quot;특별실 신청&quot;,
+  &quot;reason&quot;: &quot;example&quot;,
+  &quot;date_from&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;date_to&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;share&quot;: 58,
+  &quot;force&quot;: &quot;false&quot;
+}</code></pre></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_77" data-toc="dg6572_77#API_Reference.topic-dg6572_77">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>신청 수정/만들기 성공</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>신청 수정/만들기 성공</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requestId</b><span class="api-grey-text">string</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_87"><pre><code class="language-json">{
+  &quot;requestId&quot;: &quot;example&quot;
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 요청</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>올바르지 않은 요청</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">error</b><span class="api-grey-text">Enum</span></p><p class="api-content-type">Enum elements</p><div class="api-block api-white-block"><p>invalid_id, invalid_category, invalid_reason, invalid_date, invalid_date_from, invalid_date_range, invalid_special_time, invalid_special_reason, invalid_special_reason_classroom, same_request_exists, share_change_warning</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">force_available</b><span class="api-grey-text">boolean</span></p></div></div></div><div><p><b>400</b></p><div class="code-block detached" id="dg6572_89"><pre><code class="language-json">{
+  &quot;error&quot;: &quot;invalid_id&quot;,
+  &quot;force_available&quot;: true
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequest_write 권한 없거나 modify 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequest_write 권한 없거나 modify 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>id를 찾을 수 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>id를 찾을 수 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_97" data-toc="dg6572_97#API_Reference.topic-dg6572_97">외출 신청 삭제</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-DELETE-FF318C" title="DELETE method"><span class="api-path">/api/v1/outrequests/{id}</span></div><p id="1401792294#dg6572_99">해당 id의 외출 신청을 삭제합니다. delete 권한을 가지고 있어야 합니다.</p><section class="detached"><h3 id="1401792294#dg6572_100" data-toc="dg6572_100#API_Reference.topic-dg6572_100">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_101" data-toc="dg6572_101#API_Reference.topic-dg6572_101">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>삭제 성공</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>삭제 성공</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 id</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>올바르지 않은 id</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequests_write 권한 없거나 delete 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequests_write 권한 없거나 delete 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>id를 찾을 수 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>id를 찾을 수 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_117" data-toc="dg6572_117#API_Reference.topic-dg6572_117">외출 신청에 참여하기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-PUT-FC801D" title="PUT method"><span class="api-path">/api/v1/outrequests/{id}/users</span></div><p id="1401792294#dg6572_119">외출 신청에 참여합니다. participate 권한을 가지고 있어야 합니다.</p><section class="detached"><h3 id="1401792294#dg6572_120" data-toc="dg6572_120#API_Reference.topic-dg6572_120">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_121" data-toc="dg6572_121#API_Reference.topic-dg6572_121">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>참여 성공</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>참여 성공</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 id</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>올바르지 않은 id</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequests_write 권한 없거나 participate 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequests_write 권한 없거나 participate 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>id를 찾을 수 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>id를 찾을 수 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_137" data-toc="dg6572_137#API_Reference.topic-dg6572_137">외출 신청에서 나가기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-DELETE-FF318C" title="DELETE method"><span class="api-path">/api/v1/outrequests/{id}/users</span></div><p id="1401792294#dg6572_139">외출 신청에서 나갑니다. 강제 퇴출은 구현되어 있지 않습니다. escape(나가기) 또는 force_escape(강제 퇴출) 권한을 가지고 있어야 합니다.</p><section class="detached"><h3 id="1401792294#dg6572_140" data-toc="dg6572_140#API_Reference.topic-dg6572_140">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_141" data-toc="dg6572_141#API_Reference.topic-dg6572_141">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>나가기 성공</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>나가기 성공</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 id</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>올바르지 않은 id</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequests_write 권한 없거나 escape 또는 force_escape 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequests_write 권한 없거나 escape 또는 force_escape 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>id를 찾을 수 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>id를 찾을 수 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_153" data-toc="dg6572_153#API_Reference.topic-dg6572_153">소유권 넘기기(미구현)</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-PATCH-6B57FF" title="PATCH method"><span class="api-path">/api/v1/outrequests/{id}/users</span></div><p id="1401792294#dg6572_155">미구현</p><section class="detached"><h3 id="1401792294#dg6572_156" data-toc="dg6572_156#API_Reference.topic-dg6572_156">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">405</span><b>미구현</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>미구현</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_163" data-toc="dg6572_163#API_Reference.topic-dg6572_163">외출 신청 기록들</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/outrequests/</span></div><p id="1401792294#dg6572_165">외출 신청 기록을 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_166" data-toc="dg6572_166#API_Reference.topic-dg6572_166">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Query</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">from</b><span class="api-grey-text">string date</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">to</b><span class="api-grey-text">string date</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">type</b><span class="api-grey-text">Enum</span></p><p>외출 신청 종류입니다. 파라미터가 없으면 모든 신청을 제공합니다. query의 경우 검색어를 제공해야 합니다.</p><p class="api-content-type">Enum elements</p><div class="api-block api-white-block"><p>notended, ended, public, query</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">query</b><span class="api-grey-text">string</span></p><p>검색 쿼리입니다. type이 query일 때만 유효합니다.</p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_167" data-toc="dg6572_167#API_Reference.topic-dg6572_167">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>외출 신청 기록</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>외출 신청 기록</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requestId</b><span class="api-grey-text">string</span></p><p>신청 기록의 id</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requesterName</b><span class="api-grey-text">string</span></p><p>요청자, (학번) (이름) 형식</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">requesterCount</b><span class="api-grey-text">integer</span></p><p>요청자를 제외한 참여자 수</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date_from</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date_to</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">category</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">reason</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">status</b><span class="api-grey-text">integer</span></p><p>0: 대기 중, 1: 승인, -1: 거부</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">locked</b><span class="api-grey-text">boolean</span></p><p>잠김 여부(사용되지 않음)</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">invited</b><span class="api-grey-text">boolean</span></p><p>초대 여부(사용되지 않음)</p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_174"><pre><code class="language-json">[
+  {
+    &quot;requestId&quot;: &quot;example&quot;,
+    &quot;requesterName&quot;: &quot;example&quot;,
+    &quot;requesterCount&quot;: 58,
+    &quot;date_from&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+    &quot;date_to&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+    &quot;category&quot;: &quot;example&quot;,
+    &quot;reason&quot;: &quot;example&quot;,
+    &quot;status&quot;: 58,
+    &quot;locked&quot;: true,
+    &quot;invited&quot;: true
+  }
+]</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">400</span><b>올바르지 않은 형식</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>올바르지 않은 형식</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">error</b><span class="api-grey-text">string</span></p><p>오류 정보</p></div></div></div><div><p><b>400</b></p><div class="code-block detached" id="dg6572_176"><pre><code class="language-json">{
+  &quot;error&quot;: &quot;invalid type&quot;
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>outrequests_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>outrequests_read 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_181" data-toc="dg6572_181#API_Reference.topic-dg6572_181">전체 벌점과 기록</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/penalties</span></div><p id="1401792294#dg6572_183">전체 벌점과 벌점 정보를 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_184" data-toc="dg6572_184#API_Reference.topic-dg6572_184">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Query</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">from</b><span class="api-grey-text">string date</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">to</b><span class="api-grey-text">string date</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_185" data-toc="dg6572_185#API_Reference.topic-dg6572_185">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>벌점 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>벌점 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">total</b><span class="api-grey-text">number</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">positive</b><span class="api-grey-text">number</span></p><p>모든 양의 점수의 합</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">negative</b><span class="api-grey-text">number</span></p><p>모든 음의 점수의 합, 음수</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">data</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">target</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">giver</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">reason</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">points</b><span class="api-grey-text">integer</span></p></div></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_191"><pre><code class="language-json">{
+  &quot;total&quot;: 87,
+  &quot;positive&quot;: 87,
+  &quot;negative&quot;: 87,
+  &quot;data&quot;: [
+    {
+      &quot;target&quot;: {
+        &quot;name&quot;: &quot;example&quot;
+      },
+      &quot;giver&quot;: {
+        &quot;name&quot;: &quot;example&quot;
+      },
+      &quot;date&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+      &quot;reason&quot;: &quot;example&quot;,
+      &quot;points&quot;: 58
+    }
+  ]
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>read 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_194" data-toc="dg6572_194#API_Reference.topic-dg6572_194">벌점 점수 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/penalties/points</span></div><p id="1401792294#dg6572_196">벌점 점수 정보를 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_197" data-toc="dg6572_197#API_Reference.topic-dg6572_197">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>벌점 점수 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>벌점 점수 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">total</b><span class="api-grey-text">number</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">positive</b><span class="api-grey-text">number</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">negative</b><span class="api-grey-text">number</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_200"><pre><code class="language-json">{
+  &quot;total&quot;: 87,
+  &quot;positive&quot;: 87,
+  &quot;negative&quot;: 87
+}</code></pre></div></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_203" data-toc="dg6572_203#API_Reference.topic-dg6572_203">사용자 정보를 json으로 리턴</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/userinfo</span></div><p id="1401792294#dg6572_205">Access Token에 해당되는 사용자의 정보를 리턴합니다. userinfo_readphone 스코프가 있으면 학생/부모님 휴대전화 정보도 포함됩니다.</p><section class="detached"><h3 id="1401792294#dg6572_206" data-toc="dg6572_206#API_Reference.topic-dg6572_206">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>사용자 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>사용자 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">email</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">student_id</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">grade</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">class</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">class_num</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">joined_year</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">penalty_points</b><span class="api-grey-text">number</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">unread_notifications</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">sex</b><span class="api-grey-text">Enum</span></p><p class="api-content-type">Enum elements</p><div class="api-block api-white-block"><p>m, f</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">phone_number</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">parent_phone_number</b><span class="api-grey-text">string</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_210"><pre><code class="language-json">{
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;email&quot;: &quot;example&quot;,
+  &quot;student_id&quot;: &quot;example&quot;,
+  &quot;grade&quot;: 58,
+  &quot;class&quot;: 58,
+  &quot;class_num&quot;: 58,
+  &quot;joined_year&quot;: 58,
+  &quot;penalty_points&quot;: 87,
+  &quot;unread_notifications&quot;: 58,
+  &quot;sex&quot;: &quot;m&quot;,
+  &quot;phone_number&quot;: &quot;example&quot;,
+  &quot;parent_phone_number&quot;: &quot;example&quot;
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>read 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_214" data-toc="dg6572_214#API_Reference.topic-dg6572_214">모든 알림 읽기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/notifications</span></div><p id="1401792294#dg6572_216">알림 목록을 읽습니다(모든 알림이 읽음 처리됩니다).</p><section class="detached"><h3 id="1401792294#dg6572_217" data-toc="dg6572_217#API_Reference.topic-dg6572_217">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>알림 목록</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">applications/json</span></p><p>알림 목록</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">applications/json</b><span class="api-grey-text">Array of notification</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">_id</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">href</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">content</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">read</b><span class="api-grey-text">boolean</span></p></div></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>notifications_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>notifications_read 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_224" data-toc="dg6572_224#API_Reference.topic-dg6572_224">모든 알림 삭제</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-DELETE-FF318C" title="DELETE method"><span class="api-path">/api/v1/notifications</span></div><p id="1401792294#dg6572_226">모든 알림을 삭제합니다.</p><section class="detached"><h3 id="1401792294#dg6572_227" data-toc="dg6572_227#API_Reference.topic-dg6572_227">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>모든 알림 삭제함</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>모든 알림 삭제함</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>notifications_write 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>notifications_write 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_236" data-toc="dg6572_236#API_Reference.topic-dg6572_236">알림 읽기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/notifications/{id}</span></div><p id="1401792294#dg6572_238">알림을 읽습니다(해당 알림이 읽음 처리됩니다).</p><section class="detached"><h3 id="1401792294#dg6572_239" data-toc="dg6572_239#API_Reference.topic-dg6572_239">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_240" data-toc="dg6572_240#API_Reference.topic-dg6572_240">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>알림 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>알림 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">notification</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">_id</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date-time</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">href</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">content</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">read</b><span class="api-grey-text">boolean</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_247"><pre><code class="language-json">{
+  &quot;_id&quot;: &quot;example&quot;,
+  &quot;date&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+  &quot;href&quot;: &quot;/penalty&quot;,
+  &quot;content&quot;: &quot;example&quot;,
+  &quot;read&quot;: true
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>notification_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>notification_read 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>존재하지 않는 알림</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>존재하지 않는 알림</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_254" data-toc="dg6572_254#API_Reference.topic-dg6572_254">알림 삭제</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-DELETE-FF318C" title="DELETE method"><span class="api-path">/api/v1/notifications/{id}</span></div><p id="1401792294#dg6572_256">알림을 삭제합니다.</p><section class="detached"><h3 id="1401792294#dg6572_257" data-toc="dg6572_257#API_Reference.topic-dg6572_257">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">id</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_258" data-toc="dg6572_258#API_Reference.topic-dg6572_258">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>알림 삭제됨</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>알림 삭제됨</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>notifications_write 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>notifications_write 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>존재하지 않는 알림</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>존재하지 않는 알림</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_270" data-toc="dg6572_270#API_Reference.topic-dg6572_270">자습 신청 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/reservations/{date}</span></div><p id="1401792294#dg6572_272">자습 신청 정보를 읽습니다. 실시간 현황은 api로 제공되지 않습니다.</p><section class="detached"><h3 id="1401792294#dg6572_273" data-toc="dg6572_273#API_Reference.topic-dg6572_273">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_274" data-toc="dg6572_274#API_Reference.topic-dg6572_274">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>자습 신청 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>자습 신청 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">available</b><span class="api-grey-text">boolean</span></p><p>신청 가능 여부</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">time</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">from</b><span class="api-grey-text">string date-time</span></p><p>신청 시작 시각</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">to</b><span class="api-grey-text">string date-time</span></p><p>신청 종료 시각</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">data</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">data</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">areaCountData</b><span class="api-grey-text">Array of object</span></p><p>신청자 수 정보, 추후 object로 변경될 수 있음</p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">area_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">occupied</b><span class="api-grey-text">integer</span></p><p>구역 신청자 수</p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">version</b><span class="api-grey-text">integer</span></p><p>버전, 실시간 서비스에서 제공되는 버전과 일치합니다.</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">user_info</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">seat</b><span class="api-grey-text">string</span></p><p>신청한 좌석</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">student_id</b><span class="api-grey-text">string</span></p><p>학번</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">change_streak</b><span class="api-grey-text">integer</span></p><p>변경 횟수</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">lock</b><span class="api-grey-text">boolean</span></p><p>잠김 여부</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">limit</b><span class="api-grey-text">integer</span></p><p>최대 변경 횟수</p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_280"><pre><code class="language-json">{
+  &quot;available&quot;: true,
+  &quot;time&quot;: {
+    &quot;from&quot;: &quot;1971-04-26T12:26:06Z&quot;,
+    &quot;to&quot;: &quot;1971-04-26T12:26:06Z&quot;
+  },
+  &quot;data&quot;: {
+    &quot;data&quot;: {},
+    &quot;areaCountData&quot;: [
+      {
+        &quot;area_name&quot;: &quot;example&quot;,
+        &quot;occupied&quot;: 58
+      }
+    ],
+    &quot;version&quot;: 58
+  },
+  &quot;user_info&quot;: {
+    &quot;seat&quot;: &quot;example&quot;,
+    &quot;student_id&quot;: &quot;example&quot;,
+    &quot;change_streak&quot;: 58,
+    &quot;lock&quot;: true
+  },
+  &quot;limit&quot;: 58
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>reservations_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>reservations_read 권한 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_289" data-toc="dg6572_289#API_Reference.topic-dg6572_289">자습 신청하기</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-POST-28B8A0" title="POST method"><span class="api-path">/api/v1/reservations/{date}</span></div><p id="1401792294#dg6572_291">자습 장소를 신청합니다.</p><section class="detached"><h3 id="1401792294#dg6572_292" data-toc="dg6572_292#API_Reference.topic-dg6572_292">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div></div><div class="api-section"><p><b>Body</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">seat</b><span class="api-grey-text">string</span></p><p>좌석 이름</p></div></div></div><div><p><b>JSON example</b></p><div class="code-block detached" id="dg6572_297"><pre><code class="language-json">{
+  &quot;seat&quot;: &quot;a101&quot;
+}</code></pre></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_293" data-toc="dg6572_293#API_Reference.topic-dg6572_293">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>신청 성공</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>신청 성공</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">changed</b><span class="api-grey-text">boolean</span></p><p>변경 여부(false이면 새로운 신청)</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">change_streak</b><span class="api-grey-text">integer</span></p><p>변경 횟수</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">limit</b><span class="api-grey-text">integer</span></p><p>최대 변경 횟수</p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_304"><pre><code class="language-json">{
+  &quot;changed&quot;: true,
+  &quot;change_streak&quot;: 58,
+  &quot;limit&quot;: 58
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>reservations_write 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>reservations_write 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">406</span><b>신청 불가</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>신청 불가</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">error</b><span class="api-grey-text">Enum</span></p><p class="api-content-type">Enum elements</p><div class="api-block api-white-block"><p>not_available_date, not_started, ended</p></div></div></div></div><div><p><b>406</b></p><div class="code-block detached" id="dg6572_307"><pre><code class="language-json">{
+  &quot;error&quot;: &quot;not_available_date&quot;
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">409</span><b>좌석이 비어있지 않음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>좌석이 비어있지 않음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">422</span><b>변경 횟수 제한 초과</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>변경 횟수 제한 초과</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">limit</b><span class="api-grey-text">integer</span></p><p>최대 변경 횟수</p></div></div></div><div><p><b>422</b></p><div class="code-block detached" id="dg6572_310"><pre><code class="language-json">{
+  &quot;limit&quot;: 58
+}</code></pre></div></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_316" data-toc="dg6572_316#API_Reference.topic-dg6572_316">구역(a2, s1 등)의 신청 현황 제공</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/reservations/{date}/areas/{area}</span></div><p id="1401792294#dg6572_318">해당 구역의 신청 현황(신청된 좌석들)을 제공합니다. 구역의 전체 좌석 및 배치는 /api/v1/spaces/areas 에서 확인할 수 있습니다.</p><section class="detached"><h3 id="1401792294#dg6572_319" data-toc="dg6572_319#API_Reference.topic-dg6572_319">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">area</b><span class="api-grey-text">string</span></p></div></div><div class="api-section"><p><b>Query</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">version</b><span class="api-grey-text">null</span></p><p>제공한 버전이 현재 버전과 같으면 null을 반환합니다.</p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_320" data-toc="dg6572_320#API_Reference.topic-dg6572_320">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>구역 신청 현황(버전이 동일하면 null)</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>구역 신청 현황(버전이 동일하면 null)</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">room_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">area_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">occupied</b><span class="api-grey-text">integer</span></p><p>현재 신청된 자리 수</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">seats</b><span class="api-grey-text">Array of seat_reservation</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">seat_name</b><span class="api-grey-text">One of string, null</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">null</span></p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">area_name</b><span class="api-grey-text">One of string, null</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">null</span></p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">room_name</b><span class="api-grey-text">One of string, null</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><span class="api-grey-text">null</span></p></div></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">user</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">alias</b><span class="api-grey-text">string</span></p><p>별칭, 존재하지 않을 수도 있음</p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">student_id</b><span class="api-grey-text">string</span></p></div></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">version</b><span class="api-grey-text">integer</span></p><p>현재 버전</p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_328"><pre><code class="language-json">{
+  &quot;room_name&quot;: &quot;example&quot;,
+  &quot;area_name&quot;: &quot;example&quot;,
+  &quot;occupied&quot;: 58,
+  &quot;seats&quot;: [
+    {
+      &quot;seat_name&quot;: &quot;example&quot;,
+      &quot;area_name&quot;: &quot;example&quot;,
+      &quot;room_name&quot;: &quot;example&quot;,
+      &quot;user&quot;: {
+        &quot;name&quot;: &quot;example&quot;,
+        &quot;alias&quot;: &quot;example&quot;,
+        &quot;student_id&quot;: &quot;example&quot;
+      }
+    }
+  ],
+  &quot;version&quot;: 58
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>reservations_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>reservations_read 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>구역 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>구역 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_335" data-toc="dg6572_335#API_Reference.topic-dg6572_335">각 장소의 신청 현황 제공</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/reservations/{date}/rooms/{room}</span></div><p id="1401792294#dg6572_337">각 장소의 모든 구역과, 그 구역에 신청한 사람 수를 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_338" data-toc="dg6572_338#API_Reference.topic-dg6572_338">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">room</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_339" data-toc="dg6572_339#API_Reference.topic-dg6572_339">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>신청 현황</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>신청 현황</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">areas</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">area_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">occupied</b><span class="api-grey-text">integer</span></p></div></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_346"><pre><code class="language-json">{
+  &quot;areas&quot;: [
+    {
+      &quot;area_name&quot;: &quot;example&quot;,
+      &quot;occupied&quot;: 58
+    }
+  ]
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>reservations_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>reservations_read 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>장소 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>장소 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_356" data-toc="dg6572_356#API_Reference.topic-dg6572_356">사용자 검색</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/reservations/{date}/search</span></div><p id="1401792294#dg6572_358">현재 자습 장소를 신청한 학생의 신청 정보를 제공합니다.</p><section class="detached"><h3 id="1401792294#dg6572_359" data-toc="dg6572_359#API_Reference.topic-dg6572_359">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">date</b><span class="api-grey-text">string date</span></p></div></div><div class="api-section"><p><b>Query</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">q</b><span class="api-grey-text">string</span></p><p>검색 쿼리. 학번 또는 이름(별칭)만 가능합니다.</p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_360" data-toc="dg6572_360#API_Reference.topic-dg6572_360">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>검색된 사용자가 신청한 좌석</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>검색된 사용자가 신청한 좌석</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">seat</b><span class="api-grey-text">string</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_370"><pre><code class="language-json">{
+  &quot;seat&quot;: &quot;example&quot;
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">403</span><b>reservations_read 권한 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>reservations_read 권한 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>검색 결과 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>검색 결과 없음</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">409</span><b>동명이인 존재, 별칭으로 검색해야 함</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>동명이인 존재, 별칭으로 검색해야 함</p></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">422</span><b>신청하지 않은 학생</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>신청하지 않은 학생</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_376" data-toc="dg6572_376#API_Reference.topic-dg6572_376">모든 자습실 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/spaces/rooms</span></div><p id="1401792294#dg6572_378">모든 자습실 정보를 제공합니다. 데이터는 정적입니다.</p><section class="detached"><h3 id="1401792294#dg6572_379" data-toc="dg6572_379#API_Reference.topic-dg6572_379">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>자습실 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>자습실 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">room_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">description</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">areas</b><span class="api-grey-text">Array of string</span></p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_382"><pre><code class="language-json">[
+  {
+    &quot;room_name&quot;: &quot;example&quot;,
+    &quot;description&quot;: &quot;example&quot;,
+    &quot;areas&quot;: [
+      &quot;example&quot;
+    ]
+  }
+]</code></pre></div></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_386" data-toc="dg6572_386#API_Reference.topic-dg6572_386">자습실 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/spaces/rooms/{room}</span></div><p id="1401792294#dg6572_388">자습실의 정보를 제공합니다. 데이터는 정적입니다.</p><section class="detached"><h3 id="1401792294#dg6572_389" data-toc="dg6572_389#API_Reference.topic-dg6572_389">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">room</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_390" data-toc="dg6572_390#API_Reference.topic-dg6572_390">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>자습실 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>자습실 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">description</b><span class="api-grey-text">string</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">areas</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">area_name</b><span class="api-grey-text">string</span></p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">count</b><span class="api-grey-text">integer</span></p></div></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_396"><pre><code class="language-json">{
+  &quot;description&quot;: &quot;example&quot;,
+  &quot;areas&quot;: [
+    {
+      &quot;area_name&quot;: &quot;example&quot;,
+      &quot;count&quot;: 58
+    }
+  ]
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>장소 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>장소 없음</p></div></section></section></section><section class="detached"><h2 id="1401792294#dg6572_401" data-toc="dg6572_401#API_Reference.topic-dg6572_401">구역 정보</h2><div class="api-endpoint"><img class="inline-icon image image-container" src="https://img.shields.io/badge/-GET-167DFF" title="GET method"><span class="api-path">/api/v1/spaces/areas/{area}</span></div><p id="1401792294#dg6572_403">구역 정보를 제공합니다. 데이터는 정적입니다.</p><section class="detached"><h3 id="1401792294#dg6572_404" data-toc="dg6572_404#API_Reference.topic-dg6572_404">Request parameters</h3><div class="detached"><div class="api-section"><p><b>Path</b></p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">area</b><span class="api-grey-text">string</span></p></div></div></div></section><section class="detached"><h3 id="1401792294#dg6572_405" data-toc="dg6572_405#API_Reference.topic-dg6572_405">Responses</h3><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-green">200</span><b>구역 정보</b></p><p class="api-content-type"><span><b>Content type</b></span><span class="api-path api-grey-text">application/json</span></p><p>구역 정보</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">application/json</b><span class="api-grey-text">object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">count</b><span class="api-grey-text">integer</span></p></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">tables</b><span class="api-grey-text">Array of object</span></p><p class="api-content-type">Child attributes</p><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">r</b><span class="api-grey-text">integer</span></p><p>테이블 행</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">c</b><span class="api-grey-text">integer</span></p><p>테이블 열</p></div><div class="api-block api-white-block"><p class="api-header"><b class="api-status-code">data</b><span class="api-grey-text">Array of string</span></p><p>해당 테이블의 좌석 목록, 1행 1열, ..., 1행 c열, 2행 1열, ... 순서</p></div></div><div class="api-block api-grey-block"><p class="api-header"><b class="api-status-code">vertical</b><span class="api-grey-text">boolean</span></p><p>테이블들이 수직으로 배치되었는지 여부</p></div></div></div><div><p><b>200</b></p><div class="code-block detached" id="dg6572_411"><pre><code class="language-json">{
+  &quot;count&quot;: 58,
+  &quot;tables&quot;: [
+    {
+      &quot;r&quot;: 58,
+      &quot;c&quot;: 58,
+      &quot;data&quot;: [
+        &quot;example&quot;
+      ]
+    }
+  ],
+  &quot;vertical&quot;: true
+}</code></pre></div></div></section><section class="api-section"><div class="api-block api-grey-block"><p><span class="api-status-code api-code-red">404</span><b>구역 없음</b></p><p class="api-content-type"><span><b>Content type</b></span></p><p>구역 없음</p></div></section></section></section></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1897185137">Starter</h1><section class="detached"><h2 id="-1897185137#add-new-topics" data-toc="add-new-topics#starter.md-add-new-topics">Add new topics</h2><p id="-1897185137#n18gsv_9">You can create empty topics, or choose a template for different types of content that contains some boilerplate structure to help you get started:</p><div class="container"><figure class="image-container"><img class="center bordered-element image" id="-1897185137#n18gsv_10" alt="Create new topic options" title="Create new topic options" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/new_topic_options.png" width="290" height="220"><figcaption class="center-text">Create new topic options</figcaption></figure></div></section><section class="detached"><h2 id="-1897185137#write-content" data-toc="write-content#starter.md-write-content">Write content</h2><p id="-1897185137#n18gsv_11">Writerside supports two types of markup: Markdown and XML. When you create a new help article, you can choose between two topic types, but this doesn't mean you have to stick to a single format. You can author content in Markdown and extend it with semantic attributes or inject entire XML elements.</p></section><section class="detached"><h2 id="-1897185137#inject-xml" data-toc="inject-xml#starter.md-inject-xml">Inject XML</h2><p id="-1897185137#n18gsv_12">For example, this is how you inject a procedure:</p><section class="procedure-steps bordered-element detached"><h3 id="-1897185137#inject-a-procedure">Inject a procedure</h3><ol class="list list-decimal"><li class="list-item" id="-1897185137#n18gsv_14"><p id="-1897185137#n18gsv_16">Start typing and select a procedure type from the completion suggestions:</p><div class="container"><figure class="image-container"><img class="center bordered-element image image-size" id="-1897185137#n18gsv_17" alt="completion suggestions for procedure" title="completion suggestions for procedure" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/completion_procedure.png" width="1207" height="258"><figcaption class="center-text">completion suggestions for procedure</figcaption></figure></div></li><li class="list-item" id="-1897185137#n18gsv_15"><p id="-1897185137#n18gsv_18">Press <span class="" id="-1897185137#n18gsv_19"><span class="keystroke-after"><kbd class="keystroke">Tab</kbd></span></span> or <span class="" id="-1897185137#n18gsv_20"><span class="keystroke-after"><kbd class="keystroke">Enter</kbd></span></span> to insert the markup.</p></li></ol></section></section><section class="detached"><h2 id="-1897185137#add-interactive-elements" data-toc="add-interactive-elements#starter.md-add-interactive-elements">Add interactive elements</h2><section class="detached"><h3 id="-1897185137#tabs" data-toc="tabs#starter.md-tabs">Tabs</h3><p id="-1897185137#n18gsv_24">To add switchable content, you can make use of tabs (inject them by starting to type <span class="inline-code" id="-1897185137#n18gsv_26">tab</span> on a new line):</p><div id="-1897185137#n18gsv_25"><div class="detached" id="-1897185137#n18gsv_27"><div class="tab-title"><div>Markdown</div></div><div class="bordered-element tab-content"><div class="detached code-block" id="-1897185137#n18gsv_29"><pre><code class="language-none">![Alt Text](new_topic_options.png){ width=450 }</code></pre></div></div></div><div class="detached" id="-1897185137#n18gsv_28"><div class="tab-title"><div>Semantic markup</div></div><div class="bordered-element tab-content"><div class="detached code-block" id="-1897185137#n18gsv_30"><pre><code class="language-markup">&lt;img src=&quot;new_topic_options.png&quot; alt=&quot;Alt text&quot; width=&quot;450px&quot;/&gt;</code></pre></div></div></div></div></section><section class="detached"><h3 id="-1897185137#collapsible-blocks" data-toc="collapsible-blocks#starter.md-collapsible-blocks">Collapsible blocks</h3><p id="-1897185137#n18gsv_31">Apart from injecting entire XML elements, you can use attributes to configure the behavior of certain elements. For example, you can collapse a chapter that contains non-essential information:</p><section class="detached"><h4 id="-1897185137#supplementary-info" data-toc="supplementary-info#starter.md-supplementary-info">Supplementary info</h4><p id="-1897185137#n18gsv_33">Content under a collapsible header will be collapsed by default, but you can modify the behavior by adding the following attribute: <span class="inline-code" id="-1897185137#n18gsv_34">default-state=&quot;expanded&quot;</span></p></section></section><section class="detached"><h3 id="-1897185137#convert-selection-to-xml" data-toc="convert-selection-to-xml#starter.md-convert-selection-to-xml">Convert selection to XML</h3><p id="-1897185137#n18gsv_35">If you need to extend an element with more functions, you can convert selected content from Markdown to semantic markup. For example, if you want to merge cells in a table, it's much easier to convert it to XML than do this in Markdown. Position the caret anywhere in the table and press <span class="" id="-1897185137#n18gsv_37"><span class="keystroke-after"><kbd class="keystroke">Alt</kbd></span><span class="keystroke-after"><kbd class="keystroke">Enter</kbd></span></span>:</p><div class="container"><figure class="image-container"><img class="center bordered-element image" id="-1897185137#n18gsv_36" alt="Convert table to XML" title="Convert table to XML" src="/Users/pch/WritersideProjects/dshs-guide/Writerside/images/convert_table_to_xml.png" width="706" height="196"><figcaption class="center-text">Convert table to XML</figcaption></figure></div></section></section><section class="detached"><h2 id="-1897185137#feedback-and-support" data-toc="feedback-and-support#starter.md-feedback-and-support">Feedback and support</h2><p id="-1897185137#n18gsv_38">Please report any issues, usability improvements, or feature requests to our YouTrack project (<a href="https://youtrack.jetbrains.com/newIssue?project=WRS">https://youtrack.jetbrains.com/newIssue?project=WRS</a>) (you will need to register).</p><p id="-1897185137#n18gsv_39">You are welcome to join our public Slack workspace (<a href="https://jb.gg/WRS_Slack">https://jb.gg/WRS_Slack</a>). Before you do, please read our Code of conduct (<a href="https://www.jetbrains.com/help/writerside/writerside-code-of-conduct.html">https://www.jetbrains.com/help/writerside/writerside-code-of-conduct.html</a>). We assume that you&rsquo;ve read and acknowledged it before joining.</p><p id="-1897185137#n18gsv_40">You can also always email us at writerside@jetbrains.com (<a href="mailto:writerside@jetbrains.com">mailto:writerside@jetbrains.com</a>).</p></section><div class="top-bottom-bordered-element detached" id="-1897185137#n18gsv_8"><h4 class="secondary-title">See also</h4><div class="category" id="-1897185137#n18gsv_45"><h4 class="category-title">Writerside documentation</h4><ol class="list-none category-link"><li class="category-item">Reorder topics in the TOC (<a href="https://www.jetbrains.com/help/writerside/manage-table-of-contents.html">https://www.jetbrains.com/help/writerside/manage-table-of-contents.html</a>)</li><li class="category-item">Markup reference (<a href="https://www.jetbrains.com/help/writerside/markup-reference.html">https://www.jetbrains.com/help/writerside/markup-reference.html</a>)</li><li class="category-item">Configure Search (<a href="https://www.jetbrains.com/help/writerside/configure-search.html">https://www.jetbrains.com/help/writerside/configure-search.html</a>)</li><li class="category-item">Build and publish (<a href="https://www.jetbrains.com/help/writerside/local-build.html">https://www.jetbrains.com/help/writerside/local-build.html</a>)</li></ol></div></div></article></div></section><section class="topic"><div><article class="article"><h1 class="main-title" id="-1565239010">기술 정보</h1><section class="detached"><h2 id="-1565239010#2024-2024" data-toc="2024-2024#technical-info.md-2024-2024">구버전 웹사이트 (2024-2024)</h2><ul class="list" id="-1565239010#z3s0j9q_8" start="1"><li class="list-item" id="-1565239010#z3s0j9q_9"><p>프레임워크: Next.JS</p></li><li class="list-item" id="-1565239010#z3s0j9q_10"><p>사용 언어: TypeScript</p></li><li class="list-item" id="-1565239010#z3s0j9q_11"><p>DB: MongoDB + Mongoose, Redis</p></li><li class="list-item" id="-1565239010#z3s0j9q_12"><p>프론트엔드 라이브러리: React 18, NextUI, Tailwind CSS</p></li></ul></section><section class="detached"><h2 id="-1565239010#z3s0j9q_4" data-toc="z3s0j9q_4#technical-info.md-z3s0j9q_4">신버전 웹사이트</h2><ul class="list" id="-1565239010#z3s0j9q_13" start="1"><li class="list-item" id="-1565239010#z3s0j9q_14"><p>프레임워크: SvelteKit</p></li><li class="list-item" id="-1565239010#z3s0j9q_15"><p>사용 언어: TypeScript</p></li><li class="list-item" id="-1565239010#z3s0j9q_16"><p>DB: MongoDB + Mongoose, Redis</p></li><li class="list-item" id="-1565239010#z3s0j9q_17"><p>프론트엔드 라이브러리: Svelte 5, shadcn-svelte, Tailwind CSS</p></li></ul></section><section class="detached"><h2 id="-1565239010#ios-macos" data-toc="ios-macos#technical-info.md-ios-macos">앱(iOS/macOS)</h2><ul class="list" id="-1565239010#z3s0j9q_18" start="1"><li class="list-item" id="-1565239010#z3s0j9q_19"><p>프레임워크: SwiftUI</p></li><li class="list-item" id="-1565239010#z3s0j9q_20"><p>사용 언어: Swift</p></li><li class="list-item" id="-1565239010#z3s0j9q_21"><p>거의 모든 기능은 공개된 API (<a href="#65018">API</a>)를 기반으로 작성되었습니다.</p></li></ul></section><section class="detached"><h2 id="-1565239010#z3s0j9q_6" data-toc="z3s0j9q_6#technical-info.md-z3s0j9q_6">안드로이드 앱</h2><ul class="list" id="-1565239010#z3s0j9q_23" start="1"><li class="list-item" id="-1565239010#z3s0j9q_24"><p>발</p></li></ul></section><section class="detached"><h2 id="-1565239010#z3s0j9q_7" data-toc="z3s0j9q_7#technical-info.md-z3s0j9q_7">이 문서</h2><ul class="list" id="-1565239010#z3s0j9q_25" start="1"><li class="list-item" id="-1565239010#z3s0j9q_26"><p>JetBrains Writerside</p></li></ul></section></article></div></section></div></body></html>

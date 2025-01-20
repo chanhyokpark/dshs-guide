@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="d"
+                 name="DSHS.APP 가이드"
+                 start-page="intro.md">
+
+    <toc-element topic="intro.md"/>
+    <toc-element topic="start.md">
+        <toc-element topic="start_web.md"/>
+        <toc-element topic="start_app.md"/>
+    </toc-element>
+    <toc-element topic="student.md">
+        <toc-element topic="start_page.md"/>
+        <toc-element topic="reserve.md"/>
+        <toc-element topic="out.md"/>
+        <toc-element topic="feedback.md"/>
+        <toc-element topic="other.md">
+            <toc-element topic="widgets.md"/>
+            <toc-element topic="android_app.md"/>
+        </toc-element>
+    </toc-element>
+    <toc-element toc-title="개발 가이드">
+        <toc-element topic="API.md">
+            <toc-element topic="API_Reference.topic"/>
+        </toc-element>
+    </toc-element>
+    <toc-element topic="starter.md"/>
+    <toc-element topic="technical-info.md"/>
+</instance-profile>
