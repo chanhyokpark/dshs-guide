@@ -26,5 +26,6 @@
             <toc-element topic="API_Reference.topic"/>
         </toc-element>
     </toc-element>
+    <toc-element topic="dev_console.md"/>
     <toc-element topic="technical_info.md"/>
 </instance-profile>
