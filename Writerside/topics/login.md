@@ -34,7 +34,7 @@ DSHS.APP에 로그인하려면 패스키를 사용하거나 이메일 인증을 
 <procedure>
 대체 이메일 등록 방법
 <step>
-<ui-path>설정 | 일반</ui-path>으로 이동합니다.
+<ui-path>설정 | 일반</ui-path> 으로 이동합니다.
 </step>
 <step>
 대체 이메일 등록을 선택합니다.

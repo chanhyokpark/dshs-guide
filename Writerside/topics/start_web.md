@@ -26,7 +26,7 @@ Android의 Chrome 브라우저에서 테스트되었으며 Chrome 사용을 권�
 </tabs>
 
 ## 사이트에 접속
-웹사이트 주소는 <https://www.dshs.app>입니다.
+웹사이트 주소는 <https://dshs.app>입니다.
 
 ## 로그인 {id="login"}
 이 사이트는 학교 소속의 Google 계정(@djshs.djsch.kr)을 사용합니다.

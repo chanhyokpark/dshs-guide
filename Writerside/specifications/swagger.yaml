@@ -60,8 +60,8 @@ components:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: 'https://www.dshs.app/authorize'
-          tokenUrl: 'https://www.dshs.app/api/v1/token'
+          authorizationUrl: 'https://dshs.app/authorize'
+          tokenUrl: 'https://dshs.app/api/v1/token'
           scopes:
             userinfo_read: 사용자 정보 읽기
             userinfo_readphone: 사용자 전화번호 읽기

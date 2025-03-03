@@ -21,7 +21,7 @@ Access Token은 발급받은 뒤 30일간 유효하며, Refresh Token은 지원�
 
 ### 1. 사용자 인증 요청
 ```http request
-GET https://www.dshs.app/authorize
+GET https://dshs.app/authorize
 ```
 매개변수
 
@@ -36,7 +36,7 @@ GET https://www.dshs.app/authorize
 
 ### 2. Access Token 발급
 ```http request
-POST https://www.dshs.app/api/v1/token
+POST https://dshs.app/api/v1/token
 Content-Type: application/x-www-form-urlencoded
 ```
 매개변수
@@ -63,8 +63,8 @@ Content-Type: application/x-www-form-urlencoded
 
 예시
 ```http request
-GET https://www.dshs.app/api/v1/userinfo
+GET https://dshs.app/api/v1/userinfo
 Authorization: Bearer {ACCESS_TOKEN}
 ```
 ## API 목록 {id="api_3"}
-[웹사이트의 API 문서](https://www.dshs.app/api-doc) 또는 [이 문서의 레퍼런스](API_Reference.topic)를 참고하세요.
+[웹사이트의 API 문서](https://dshs.app/api-doc) 또는 [이 문서의 레퍼런스](API_Reference.topic)를 참고하세요.

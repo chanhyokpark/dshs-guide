@@ -6,7 +6,7 @@
 
 ## 사용법
 
-[개발자 콘솔 페이지](https://www.dshs.app/dev)에 접속합니다.
+[개발자 콘솔 페이지](https://dshs.app/dev)에 접속합니다.
 
 + `help`를 입력해 명령어의 도움말을 봅니다.
 + `command1 | command2` 형식으로 command1의 출력 결과를 command2로 파이핑합니다.

@@ -6,9 +6,13 @@ Android의 경우 알림 기능만 가지고 있는 앱을 지원합니다. 앱�
 > Android의 앱 형식으로 웹사이트를 사용하고 싶다면 [PWA](start_web.md#pwa) 문서를 참고하세요.
 {style="note"}
 
+> 현재 앱이 작동하지 않으며 추후 재배포할 예정입니다.
+{style="warning"}
+
 ## 설치
 
 앱이 너무 단순하기 때문에 Google Play Store를 사용하지 않습니다.
+
 
 <resource src="dshs.apk">APK 파일 다운로드</resource>
 

@@ -4,6 +4,8 @@ iOS 기기의 경우 반드시 앱을 사용해야 합니다.
 이 앱은 학생 전용입니다.
 </warning>
 
+> 아직 일부 기능이 구현되지 않았습니다. 구현 예정인 기능은 [이곳](ios-todo.md)을 참고하세요.
+
 ## 요구사항
 
 <tabs group="os">
@@ -26,7 +28,7 @@ macOS 14.0(Sonoma) 이상 버전이 필수이며, macOS 15.0(Sequoia) 이상 버
 </p>
 </tab>
 <tab title="macOS" group-key="macos">
-<a href="https://www.dshs.app/appleapps">이 링크</a> 로 들어간 뒤, ".dmg 파일 다운로드" 링크를 눌러 다운로드합니다. 파일을 열고 앱 아이콘을 애플리케이션 폴더로 드래그해 설치합니다.
+<a href="https://dshs.app/appleapps">이 링크</a> 로 들어간 뒤, ".dmg 파일 다운로드" 링크를 눌러 다운로드합니다. 파일을 열고 앱 아이콘을 애플리케이션 폴더로 드래그해 설치합니다.
 </tab>
 </tabs>
 
