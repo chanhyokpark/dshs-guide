@@ -114,4 +114,8 @@
         <description>Created after removal of "Starter" from DSHS.APP 가이드</description>
         <accepts>starter.html</accepts>
     </rule>
+    <rule id="646573a1">
+        <description>Created after removal of "벌점" from DSHS.APP 가이드</description>
+        <accepts>벌점.html</accepts>
+    </rule>
 </rules>

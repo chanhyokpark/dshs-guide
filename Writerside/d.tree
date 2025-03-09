@@ -15,20 +15,29 @@
     <toc-element topic="contact.md"/>
     <toc-element topic="student.md">
         <toc-element topic="start_page.md"/>
+        <toc-element topic="penalty-rules.md"/>
         <toc-element topic="reserve.md"/>
         <toc-element topic="out.md"/>
+        <toc-element topic="dorm.md"/>
+        <toc-element topic="settings.md"/>
         <toc-element topic="feedback.md"/>
         <toc-element topic="other.md">
             <toc-element topic="widgets.md"/>
             <toc-element topic="android_app.md"/>
+            <toc-element topic="ios-todo.md"/>
         </toc-element>
-        <toc-element topic="ios-todo.md"/>
+    </toc-element>
+    <toc-element topic="teacher.md">
+        <toc-element topic="quicksearch.md"/>
+        <toc-element topic="out-teacher.md"/>
+        <toc-element topic="give-penalty.md"/>
+        <toc-element topic="export.md"/>
     </toc-element>
     <toc-element toc-title="개발 가이드">
         <toc-element topic="API.md">
             <toc-element topic="API_Reference.topic"/>
         </toc-element>
+        <toc-element topic="dev_console.md"/>
     </toc-element>
-    <toc-element topic="dev_console.md"/>
     <toc-element topic="technical_info.md"/>
 </instance-profile>

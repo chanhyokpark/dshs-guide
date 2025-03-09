@@ -47,3 +47,6 @@ Android Chrome의 경우, 메뉴 > 앱 설치를 선택해 앱을 설치할 수 
 Android 기기의 경우 전용 앱을 다운로드해야 합니다. [해당 문서](android_app.md)를 참고하세요.
 
 Windows/Linux 기기는 알림 기능을 지원하지 않습니다.
+
+## 다음
+[](student.md) 또는 [](teacher.md) 페이지를 참고하세요.
