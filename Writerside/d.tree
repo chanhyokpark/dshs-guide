@@ -10,9 +10,8 @@
     <toc-element topic="start.md">
         <toc-element topic="start_web.md"/>
         <toc-element topic="start_app.md"/>
+        <toc-element topic="login.md"/>
     </toc-element>
-    <toc-element topic="login.md"/>
-    <toc-element topic="contact.md"/>
     <toc-element topic="student.md">
         <toc-element topic="start_page.md"/>
         <toc-element topic="penalty-rules.md"/>
@@ -31,8 +30,10 @@
         <toc-element topic="quicksearch.md"/>
         <toc-element topic="out-teacher.md"/>
         <toc-element topic="give-penalty.md"/>
+        <toc-element topic="query-students.md"/>
         <toc-element topic="export.md"/>
     </toc-element>
+    <toc-element topic="contact.md"/>
     <toc-element toc-title="개발 가이드">
         <toc-element topic="API.md">
             <toc-element topic="API_Reference.topic"/>

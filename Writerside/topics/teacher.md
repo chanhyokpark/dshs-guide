@@ -4,4 +4,5 @@
 + [](quicksearch.md)
 + [](out-teacher.md)
 + [](give-penalty.md)
++ [](query-students.md)
 + [](export.md)
