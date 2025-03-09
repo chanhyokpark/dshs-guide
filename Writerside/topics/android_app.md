@@ -10,6 +10,7 @@ Android의 경우 알림 기능만 가지고 있는 앱을 지원합니다. 앱�
 
 앱이 너무 단순하기 때문에 Google Play Store를 사용하지 않습니다.
 
+만약 작년 버전의 앱이 깔려 있다면 먼저 삭제해야 합니다.
 
 <a href="https://dshs.app/DSHS.apk">앱 다운로드</a>
 
