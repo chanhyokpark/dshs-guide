@@ -231,6 +231,9 @@ paths:
                 share:
                   type: integer
                   description: "0: 비공개, 1: 링크 공유, 2: 전체 공개"
+                requested_to:
+                  type: string
+                  description: "승인 요청할 선생님 id"
                 force:
                   type: boolean
                   description: 400 오류에서 force_available이 true일 경우 오류를 무시하고 신청합니다. 반드시 기본값을 false로 설정하세요.
