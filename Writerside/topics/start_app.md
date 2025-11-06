@@ -28,7 +28,7 @@ macOS 14.0(Sonoma) 이상 버전이 필수이며, macOS 15.3(Sequoia) 이상 버
 </p>
 </tab>
 <tab title="macOS" group-key="macos">
-<a href="https://dshs.app/macos_binary/DSHS_29.dmg">.dmg 파일 다운로드</a>
+<a href="https://dshs.app/macos_binary/DSHS_33.dmg">.dmg 파일 다운로드</a>
 
 위 링크를 클릭해 .dmg 파일을 다운로드한 후 설치합니다.
 </tab>
