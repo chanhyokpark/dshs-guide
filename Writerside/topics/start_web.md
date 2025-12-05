@@ -38,7 +38,7 @@ Android의 Chrome 브라우저에서 테스트되었으며 Chrome 사용을 권�
 ## PWA 앱
 일부 Windows/Android 브라우저는 PWA(Progressive Web App) 기능을 제공합니다.
 
-Android Chrome의 경우, 메뉴 > 앱 설치를 선택해 앱을 설치할 수 있습니다.
+Android Chrome의 경우, 브라우저 메뉴 > 앱 설치(또는 홈 화면에 추가)를 선택해 앱을 설치할 수 있습니다.
 
 
 ## 알림
