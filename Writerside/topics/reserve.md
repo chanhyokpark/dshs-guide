@@ -8,9 +8,6 @@ switcher-label: 버전
 
 ## 자습실 구조
 
-> 모든 이미지의 허가받지 않은 사용을 금합니다.
-> {style="warning"}
-
 ![독서실 전체 구조](Screenshot 2025-01-17 at 2.00.03 PM.png)
 {thumbnail="true" width="500"}
 

@@ -13,6 +13,7 @@
         <toc-element topic="login.md"/>
     </toc-element>
     <toc-element topic="student.md">
+        <toc-element topic="board.md"/>
         <toc-element topic="start_page.md"/>
         <toc-element topic="penalty-rules.md"/>
         <toc-element topic="reserve.md"/>
