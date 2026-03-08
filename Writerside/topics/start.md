@@ -11,9 +11,13 @@ switcher-label: 버전
 
 선생님은 iOS 기기로도 웹사이트를 사용할 수 있습니다.
 
-## Android/Windows/Linux
+## Android
 
-Android/Windows/Linux 등의 기기를 사용하는 경우 [](start_web.md)를 참고하세요.
+[](android_app.md)을 참고하세요.
+
+## Windows/Linux
+
+Windows/Linux 등의 기기를 사용하는 경우 [](start_web.md)를 참고하세요.
 
 ## macOS
 macOS 기기의 경우 앱 또는 웹사이트를 모두 사용할 수 있습니다.
