@@ -3,44 +3,57 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="d"
-                 name="DSHS.APP 가이드"
-                 start-page="intro.md">
-
+                  name="DSHS.APP 가이드"
+                  start-page="intro.md">
     <toc-element topic="intro.md"/>
     <toc-element topic="start.md">
         <toc-element topic="start_web.md"/>
         <toc-element topic="start_app.md"/>
+        <toc-element topic="android_app.md"/>
         <toc-element topic="login.md"/>
-    </toc-element>
-    <toc-element topic="student.md">
-        <toc-element topic="board.md"/>
         <toc-element topic="start_page.md"/>
-        <toc-element topic="penalty-rules.md"/>
+        <toc-element topic="role-access.md"/>
+        <toc-element topic="widgets.md"/>
+        <toc-element topic="ios-todo.md"/>
+    </toc-element>
+    <toc-element toc-title="학교생활">
         <toc-element topic="reserve.md"/>
         <toc-element topic="out.md"/>
         <toc-element topic="dorm.md"/>
+        <toc-element topic="penalty-rules.md"/>
+        <toc-element topic="meal.md"/>
         <toc-element topic="barcode.md"/>
-        <toc-element topic="settings.md"/>
-        <toc-element topic="feedback.md"/>
-        <toc-element topic="other.md">
-            <toc-element topic="widgets.md"/>
-            <toc-element topic="android_app.md"/>
-            <toc-element topic="ios-todo.md"/>
-        </toc-element>
+    </toc-element>
+    <toc-element toc-title="게시판과 소통">
+        <toc-element topic="board.md"/>
+        <toc-element topic="posts.md"/>
+        <toc-element topic="groups.md"/>
+        <toc-element topic="messages.md"/>
+        <toc-element topic="notifications.md"/>
+        <toc-element topic="share.md"/>
+    </toc-element>
+    <toc-element toc-title="학습">
+        <toc-element topic="assignments.md"/>
+        <toc-element topic="online-judge.md"/>
+        <toc-element topic="online-judge-authoring.md"/>
     </toc-element>
     <toc-element topic="teacher.md">
-        <toc-element topic="quicksearch.md"/>
+        <toc-element topic="query-students.md"/>
         <toc-element topic="out-teacher.md"/>
         <toc-element topic="give-penalty.md"/>
-        <toc-element topic="query-students.md"/>
-        <toc-element topic="export.md"/>
+        <toc-element topic="courses.md"/>
+        <toc-element topic="assignment-management.md"/>
+        <toc-element topic="batch-messages.md"/>
     </toc-element>
-    <toc-element topic="contact.md"/>
-    <toc-element toc-title="개발 가이드">
-        <toc-element topic="API.md">
-            <toc-element topic="API_Reference.topic"/>
-        </toc-element>
-        <toc-element topic="dev_console.md"/>
+    <toc-element topic="parent.md">
+        <toc-element topic="parent-views.md"/>
     </toc-element>
-    <toc-element topic="technical_info.md"/>
+    <toc-element topic="admin.md">
+        <toc-element topic="admin-users.md"/>
+        <toc-element topic="admin-operations.md"/>
+    </toc-element>
+    <toc-element toc-title="설정과 지원">
+        <toc-element topic="settings.md"/>
+        <toc-element topic="contact.md"/>
+    </toc-element>
 </instance-profile>
