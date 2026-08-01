@@ -1,19 +1,19 @@
-# 안드로이드 앱
+# Android 앱에서 시작하기
 
-Android 앱이 새로 출시되었습니다.
+Android에서는 Google Play의 DSHS.APP 전용 앱을 권장합니다.
 
 ## 설치
 
-만약 작년 버전의 앱이 깔려 있다면 먼저 삭제해야 합니다.
-
 <a href="https://play.google.com/store/apps/details?id=com.dshs.dshsapp">
-<img alt="Play Store" width="200" height="300" style="block" src="google-play-badge-logo.svg" />
+<img alt="Google Play에서 다운로드" width="200" style="block" src="google-play-badge-logo.svg" />
 </a>
-위 이미지를 클릭해 설치합니다.
 
+1. 위 배지를 눌러 Google Play를 엽니다.
+2. 앱을 설치하거나 최신 버전으로 업데이트합니다.
+3. 앱을 열어 로그인하고 알림 권한을 허용합니다.
 
-## 지원
+로그인 화면이 무한 반복된다면 '다른 방법으로 로그인'을 사용하세요.
 
-Android 앱은 위젯 등의 부가기능은 지원하지 않습니다. 
+## 지원 범위
 
-알림 기능이 작동하지 않는 경우 앱을 삭제한 뒤 재설치하세요.
+자습, 외출, 상·벌점, 급식, 게시판 등 학교생활 기능은 웹과 같은 계정과 데이터를 사용합니다. 공통 기능은 각 역할별 문서를 참고하세요.

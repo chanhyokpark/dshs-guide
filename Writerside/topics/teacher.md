@@ -1,8 +1,29 @@
-# 선생님 가이드
+# 교사 및 관리자 가이드
 
-## 목록
-+ [](quicksearch.md)
-+ [](out-teacher.md)
-+ [](give-penalty.md)
-+ [](query-students.md)
-+ [](export.md)
+교사와 관리자는 일반 게시판·메시지·급식 기능에 더해 학생 조회, 외출 승인, 상·벌점, 수업과 과제를 관리합니다. 관리자는 여기에 서비스 운영 메뉴가 추가됩니다.
+
+## 교사 공통 기능
+
+- [](quicksearch.md): 학생, 독서실 좌석을 빠르게 찾고 현재 상태 확인
+- [](query-students.md): 학생 목록 검색·정렬, 상세 정보와 내보내기
+- [](out-teacher.md): 외출·특별실 신청 승인 또는 거절
+- [](give-penalty.md): 여러 학생에게 상·벌점 부여, 기록 조회와 취소
+- [](export.md): 날짜별 자습·기숙사·외출·상벌점 운영 자료 다운로드
+- [](courses.md): 수업·분반·담당 교사·학생 명단과 Classroom 가져오기
+- [](assignment-management.md): 제출 현황, 개인·일괄 채점, 점수와 제출 파일 내보내기
+- [](batch-messages.md): 최대 500건의 개인 메시지를 일괄 또는 예약 전송
+- [](online-judge-authoring.md): 문제 출제와 고급 채점 데이터 관리
+
+교사와 관리자도 [](board.md), [](posts.md), [](groups.md), [](messages.md), [](settings.md), [](notifications.md)을 사용합니다. 교사는 게시판 권한에 따라 게시글 승인, 읽음 확인, 과제·공지 작성과 멤버 관리를 할 수 있습니다.
+
+## 관리자 전용 기능
+
+관리자는 위 교사 기능을 모두 사용할 수 있으며 다음 기능이 추가됩니다.
+
+- [](admin-users.md): 사용자 생성·수정·삭제, CSV와 Google 스프레드시트 동기화, 벌점 초기화
+- [](admin-operations.md): 자습 신청 날짜·시간·참여자·좌석과 기숙사 신청 날짜 관리
+- [](admin-content.md): 모든 게시판·그룹 검색, 설정 변경, 소유권 이전과 삭제
+
+<warning>
+관리자 작업은 여러 사용자의 계정과 신청 자료에 즉시 영향을 줄 수 있습니다. 날짜, 대상 수, 소유자와 삭제 경고를 확인한 뒤 실행하세요.
+</warning>

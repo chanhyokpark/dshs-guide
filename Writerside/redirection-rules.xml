@@ -118,4 +118,8 @@
         <description>Created after removal of "벌점" from DSHS.APP 가이드</description>
         <accepts>벌점.html</accepts>
     </rule>
+    <rule id="da1dc8f">
+        <description>Created after removal of "단어 학습" from DSHS.APP 가이드</description>
+        <accepts>word-study.html</accepts>
+    </rule>
 </rules>

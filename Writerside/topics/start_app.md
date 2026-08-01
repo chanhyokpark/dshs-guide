@@ -1,63 +1,30 @@
-# 앱에서 시작하기
-iOS 기기의 경우 반드시 앱을 사용해야 합니다.
-<warning>
-이 앱은 학생 전용입니다.
-</warning>
+# iOS 앱에서 시작하기
 
-> 아직 일부 기능이 구현되지 않았습니다. 구현 예정인 기능은 [이곳](ios-todo.md)을 참고하세요.
+iPhone과 iPad에서는 App Store의 **대전과학고등학교** 앱을 사용할 수 있습니다. 앱의 학교생활 기능은 웹과 동일한 계정과 데이터를 사용합니다.
 
-## 요구사항
+## 설치
 
-<tabs group="os">
-<tab title="iOS" group-key="ios">
-iOS 17.0 이상 버전이 필수입니다.
-</tab>
-<tab title="macOS" group-key="macos">
-macOS 14.0(Sonoma) 이상 버전이 필수이며, macOS 15.3(Sequoia) 이상 버전이 권장됩니다.
-</tab>
-</tabs>
-
-## 앱 설치
-<tabs group="os">
-<tab title="iOS" group-key="ios">
 <a href="https://apps.apple.com/app/대전과학고등학교/id6651842648">
-<img alt="App Store" width="200" height="300" style="block" src="appstore_banner.svg" />
+<img alt="App Store에서 다운로드" width="200" style="block" src="appstore_banner.svg" />
 </a>
-<p>
-위 이미지를 클릭한 뒤, 앱을 설치합니다.
-</p>
-</tab>
-<tab title="macOS" group-key="macos">
-<a href="https://dshs.app/macos_binary/DSHS_33.dmg">.dmg 파일 다운로드</a>
 
-위 링크를 클릭해 .dmg 파일을 다운로드한 후 설치합니다.
-</tab>
-</tabs>
+1. 위 배지를 눌러 App Store를 엽니다.
+2. 앱을 설치하고 실행합니다.
+3. 패스키 또는 로그인 화면에서 제공되는 방법으로 로그인합니다.
+4. 처음 표시되는 알림 권한 요청을 허용합니다.
 
-## 로그인
+## 앱과 웹의 관계
 
-이 앱은 패스키 로그인에 최적화되어 있습니다. 패스키로 로그인을 선택해서 iCloud에 저장된 패스키를 이용해 빠르게 로그인할 수 있습니다.
+자습, 외출, 상·벌점, 급식, 게시판 등 공통 기능의 사용 방법은 이 문서의 웹 화면 설명과 같습니다. 앱에서 메뉴 위치나 버튼 모양만 다를 수 있습니다. iOS 공유 메뉴에서 받은 파일이나 링크는 [](share.md)에 따라 게시글, 과제 제출 또는 메시지에 전달할 수 있습니다.
 
-패스키를 등록하지 않았다면 Safari로 웹사이트의 <ui-path>설정 | 일반</ui-path>으로 들어가서 패스키를 등록하거나, '패스키가 없나요?' 버튼을 클릭해 로그인한 뒤 안내사항을 따릅니다.
+패스키 로그인은 iCloud 키체인 등 기기의 비밀번호 관리자를 사용합니다. 새 기기에서 패스키가 보이지 않으면 [](login.md)의 이메일 또는 비밀번호 로그인을 먼저 사용하고 설정에서 새 패스키를 등록하세요.
 
-macOS 앱은 패스키를 지원하지 않습니다.
+## 알림과 위젯
 
-자세한 사항은 [](login.md)을 참조하세요.
+- iOS 설정에서 앱의 알림을 허용해야 합니다.
+- 앱 안의 [](notifications.md) 설정에서도 원하는 항목이 켜져 있어야 합니다.
+- 벌점과 급식 위젯은 [](widgets.md)을 참고하세요.
 
-## 알림 권한 허용
-**최소** 1개의 스마트폰에서는 알림을 활성화해야 합니다.
+## macOS 앱 지원 종료
 
-<tabs group="os">
-<tab title="iOS" group-key="ios">
-앱을 처음 시작할 때 나오는 창에서 알림 권한을 허용해야 합니다. 
-</tab>
-<tab title="macOS" group-key="macos">
-앱을 처음 시작한 뒤 우측 상단에 나타나는 알림에서 '허용'을 선택해야 합니다.
-</tab>
-</tabs>
-
-## 다음
-[](student.md) 페이지를 참고하세요.
-
-
-
+macOS 앱의 다운로드, 로그인, 알림과 위젯은 더 이상 지원 범위가 아닙니다. Mac에서는 [](start_web.md)에 따라 웹사이트를 사용하세요.
