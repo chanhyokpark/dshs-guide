@@ -1,16 +1,19 @@
-# Android 앱 설치
+# 안드로이드 앱
 
-Android 기기에서는 Google Play의 DSHS.APP을 설치합니다.
+Android 앱이 새로 출시되었습니다.
 
-## 설치 순서
+## 설치
 
-1. Google Play에서 `DSHS.APP`을 검색합니다.
-2. 앱을 설치하고 실행합니다.
-3. 알림 권한을 요청하면 필요한 알림을 받도록 허용합니다.
-4. [](login.md)에 따라 로그인합니다.
+만약 작년 버전의 앱이 깔려 있다면 먼저 삭제해야 합니다.
 
-앱 업데이트가 표시되면 먼저 최신 버전으로 업데이트하세요. 학교 네트워크에서 설치가 되지 않으면 다른 네트워크에서 다시 시도합니다.
+<a href="https://play.google.com/store/apps/details?id=com.dshs.dshsapp">
+<img alt="Play Store" width="200" height="300" style="block" src="google-play-badge-logo.svg" />
+</a>
+위 이미지를 클릭해 설치합니다.
 
-<warning>
-출처를 확인할 수 없는 APK 파일을 설치하지 마세요. 공식 배포 경로를 사용하세요.
-</warning>
+
+## 지원
+
+Android 앱은 위젯 등의 부가기능은 지원하지 않습니다. 
+
+알림 기능이 작동하지 않는 경우 앱을 삭제한 뒤 재설치하세요.

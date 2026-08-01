@@ -1,3 +1,16 @@
-# 학생 기능 안내
+---
+switcher-label: 버전
+---
+# 학생 가이드
 
-학생 기능은 새 가이드의 [](role-access.md#student)에서 시작하세요. 학교생활은 자습·외출·기숙사·상벌점 문서, 학습 기능은 과제 센터와 온라인 저지 문서에서 확인할 수 있습니다.
+> 페이지 상단의 '버전'을 선택해 웹사이트 또는 앱 버전의 가이드를 볼 수 있습니다.
+{style="note"}
+
+> 선택된 버전: 웹사이트
+{switcher-key="웹사이트" style="note"}
+
+> 선택된 버전: 앱 
+{switcher-key="앱" style="note"}
+
++ [](start_page.md)
++ [](reserve.md)

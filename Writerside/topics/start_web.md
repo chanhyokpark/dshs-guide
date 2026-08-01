@@ -1,19 +1,52 @@
-# 웹사이트 시작
+# 웹사이트에서 시작하기
+iOS 기기가 아닌 경우 웹사이트를 이용할 수 있습니다.
 
-웹 브라우저에서 `https://dshs.app`에 접속합니다. 별도 프로그램을 설치하지 않아도 대부분의 기능을 사용할 수 있습니다.
+## 지원 기기/브라우저
+<tabs>
+<tab title="데스크톱">
+<p>
+macOS의 Firefox, Chrome 브라우저에서 테스트되며, Windows/Linux에서 정상 작동합니다.
+</p>
+<p>
+Firefox, Chrome, Safari(데스크톱) 등의 브라우저에서 작동합니다.
+</p>
+</tab>
+<tab title="모바일">
+<p><b>모든 iOS 브라우저는 사용할 수 없습니다. iOS의 모든 브라우저는 Safari 기반입니다.</b></p>
+<p>
+<b>삼성 브라우저는 권장되지 않습니다.</b>
+</p>
+<p>
+Android의 Chrome 브라우저에서 테스트되었으며 Chrome 사용을 권장합니다.
+</p>
+<p>
+기기의 너비가 360픽셀 미만일 경우 일부 레이아웃이 깨질 수 있습니다.
+</p>
+</tab>
+</tabs>
 
-## 권장 환경
+## 사이트에 접속
+웹사이트 주소는 <https://dshs.app>입니다.
 
-- Chrome, Edge, Safari의 최신 버전
-- 쿠키와 JavaScript 허용
-- Google Drive·Classroom 기능을 사용할 때 팝업과 Google 로그인 허용
+## 로그인 {id="login"}
+이 사이트는 학교 소속의 Google 계정(@djshs.djsch.kr)을 사용합니다.
 
-## 홈 화면에 추가하기
+배정받은 ID 및 비밀번호를 사용해 로그인합니다.
 
-자주 사용한다면 브라우저 메뉴에서 **홈 화면에 추가** 또는 **앱 설치**를 선택할 수 있습니다. 이는 웹사이트 바로가기를 설치하는 기능이며 iOS·Android 네이티브 앱과는 다릅니다.
+만약 로그인 버튼을 누르자마자 오류가 뜬다면 [이 링크](https://accounts.google.com/AddSession)에서 계정을 추가한 뒤 재시도하세요.
 
-<warning>
-공용 기기에서는 사용을 마친 뒤 반드시 로그아웃하세요. 브라우저에 로그인 정보나 패스키를 저장하지 마세요.
-</warning>
+## PWA 앱
+일부 Windows/Android 브라우저는 PWA(Progressive Web App) 기능을 제공합니다.
 
-로그인 방법은 [](login.md)을 참고하세요.
+Android Chrome의 경우, 브라우저 메뉴 > 앱 설치(또는 홈 화면에 추가)를 선택해 앱을 설치할 수 있습니다.
+
+
+## 알림
+**최소** 1개의 스마트폰에는 알림을 활성화해야 합니다.
+
+Android 기기의 경우 전용 앱을 다운로드해야 합니다. [해당 문서](android_app.md)를 참고하세요.
+
+Windows/Linux 기기는 알림 기능을 지원하지 않습니다.
+
+## 다음
+[](student.md) 또는 [](teacher.md) 페이지를 참고하세요.

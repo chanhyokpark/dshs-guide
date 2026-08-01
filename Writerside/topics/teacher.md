@@ -1,18 +1,8 @@
-# 교사
+# 선생님 가이드
 
-교사 계정은 학생 조회, 외출 승인, 상·벌점, 수업·과제·채점과 단체 메시지 기능을 사용합니다. 첫 로그인에서 학교 Google 계정 연결이 요구될 수 있습니다.
-
-## 자주 사용하는 작업
-
-- 학생 검색과 내보내기: [](query-students.md)
-- 외출·특별실 신청 승인: [](out-teacher.md)
-- 상·벌점 부여와 취소: [](give-penalty.md)
-- 수업·분반 관리: [](courses.md)
-- 과제 확인과 채점: [](assignment-management.md)
-- 여러 학생에게 메시지 발송: [](batch-messages.md)
-
-교사는 자습 신청 내역을 조회할 수 있지만 신청 기간·좌석 운영 변경은 관리자 기능입니다.
-
-<warning>
-학생 정보, 점수와 메시지 내역에는 개인정보가 포함됩니다. 내려받은 파일과 Google 스프레드시트의 공유 범위를 제한하세요.
-</warning>
+## 목록
++ [](quicksearch.md)
++ [](out-teacher.md)
++ [](give-penalty.md)
++ [](query-students.md)
++ [](export.md)
