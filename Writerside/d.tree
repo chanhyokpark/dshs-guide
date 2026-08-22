@@ -54,5 +54,12 @@
         <toc-element topic="parent-settings.md"/>
     </toc-element>
     <toc-element topic="contact.md"/>
+    <toc-element topic="privacy-compliance.md">
+        <toc-element topic="privacy-management-plan.md"/>
+        <toc-element topic="privacy-data-inventory.md"/>
+        <toc-element topic="privacy-processors.md"/>
+        <toc-element topic="privacy-retention.md"/>
+        <toc-element topic="privacy-keris-matrix.md"/>
+    </toc-element>
     <toc-element topic="techincal_info_and_timeline.md"/>
 </instance-profile>
