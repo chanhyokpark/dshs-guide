@@ -1,43 +1,43 @@
-# Log in with dshs.app
+# dshs.app 로그인 연동
 
-Log in with dshs.app is standard OpenID Connect (Authorization Code flow) served by `https://id.dshs.app`. This page gives you the choices and copy-paste code; [id.dshs.app/docs](https://id.dshs.app/docs) explains every parameter, token and error in full.
+**dshs.app 계정으로 로그인**은 `https://id.dshs.app`에서 제공하며, OpenID Connect의 인증 코드 방식(Authorization Code flow)을 따릅니다. 이 페이지에서는 앱 종류에 따른 연동 방법과 코드 예제를 안내합니다. 파라미터, 토큰, 오류에 대한 자세한 설명은 [로그인 API 문서](https://id.dshs.app/docs)를 참고하세요.
 
-## Choose a Client type
+## 앱 종류 선택
 
-- **Server app** (서버 앱, confidential Client): your server exchanges the code, authenticating with `client_secret`. PKCE is optional but recommended.
-- **SPA or native app** (SPA·네이티브 앱, public Client): the browser or the device exchanges the code. There is no secret, so PKCE (S256) is required.
+- **서버 앱**(confidential Client): 서버가 `client_secret`으로 인증하고, 인증 코드를 토큰으로 교환합니다. PKCE는 선택 사항이지만 사용을 권장합니다.
+- **SPA·네이티브 앱**(public Client): 브라우저나 기기에서 인증 코드를 토큰으로 교환합니다. 비밀 키를 사용하지 않으므로 PKCE(S256)가 필수입니다.
 
-Pick server app whenever you have a backend; the Client 종류 table in [the reference](https://id.dshs.app/docs) lists the remaining differences, such as how often the consent page (동의 화면) appears.
+백엔드가 있다면 서버 앱으로 등록하세요. 동의 화면이 표시되는 시점 등 나머지 차이는 [로그인 API 문서](https://id.dshs.app/docs)의 **Client 종류** 표에서 확인할 수 있습니다.
 
-## The flow in five steps
+## 로그인부터 API 호출까지
 
-1. **Log in.** Send the user's browser to [`GET /auth`](https://id.dshs.app/docs#tag/로그인/GET/auth) with your `client_id`, `redirect_uri`, `scope` and `state`. The user signs in on id.dshs.app, picks one of their Users and consents to your Scopes.
-2. **Exchange the code.** id.dshs.app sends the browser back to your `redirect_uri` with `code` (valid for 60 seconds, single use) and `state`. Post the code to [`POST /token`](https://id.dshs.app/docs#tag/토큰/POST/token) with your `client_secret` (server app) or `code_verifier` (SPA) and `resource=https://api.dshs.app` to get `access_token`, `id_token` and, if you asked for `offline_access`, `refresh_token`.
-3. **Know who logged in.** The `id_token` is a JWT whose `sub` is the User id; with the `profile` Scope it also carries `name`, `role` and `school`. Verify its signature with the keys from [`GET /jwks`](https://id.dshs.app/docs#tag/메타데이터/GET/jwks), listed in the [discovery document](https://id.dshs.app/docs#tag/메타데이터/GET/.well-known/openid-configuration).
-4. **Call the School API.** Send the access token as `Authorization: Bearer <token>`, for example to [`GET /v2/users/me`](https://api.dshs.app/docs#tag/내-정보/GET/v2/users/me). See [](dev-school-api.md).
-5. **Refresh on 401.** The access token lives 15 minutes. When the School API answers `401`, post the refresh token to [`POST /token`](https://id.dshs.app/docs#tag/토큰/POST/token) and retry; see [Refresh on 401](#refresh-on-401) below.
+1. **로그인 화면으로 이동합니다.** `client_id`, `redirect_uri`, `scope`, `state`를 넣은 [`GET /auth`](https://id.dshs.app/docs#tag/로그인/GET/auth) 주소로 사용자의 브라우저를 보냅니다. 사용자는 id.dshs.app에서 로그인하고, 계정에 연결된 사용자 중 하나를 선택한 뒤 앱이 요청한 권한에 동의합니다.
+2. **인증 코드를 토큰으로 교환합니다.** 로그인이 끝나면 브라우저가 `code`와 `state`를 받아 앱의 `redirect_uri`로 돌아옵니다. `code`는 60초 동안 유효하며 한 번만 사용할 수 있습니다. 이 코드를 [`POST /token`](https://id.dshs.app/docs#tag/토큰/POST/token)에 보내세요. 서버 앱은 `client_secret`으로 인증하고, PKCE를 사용하는 앱은 `code_verifier`를 함께 보냅니다. 학교 API를 사용하려면 `resource=https://api.dshs.app`도 넣으세요. 응답으로 `access_token`, `id_token`을 받고, `offline_access`를 요청해 동의받았다면 `refresh_token`도 받습니다.
+3. **로그인한 사용자를 확인합니다.** `id_token`은 JWT 형식이며, `sub`에 사용자 id가 담겨 있습니다. `profile` Scope에 동의했다면 `name`, `role`, `school`도 포함됩니다. 토큰은 [`GET /jwks`](https://id.dshs.app/docs#tag/메타데이터/GET/jwks)의 공개 키로 서명을 검증한 뒤 사용하세요. 공개 키의 주소는 [discovery 문서](https://id.dshs.app/docs#tag/메타데이터/GET/.well-known/openid-configuration)에도 나와 있습니다.
+4. **학교 API를 호출합니다.** `Authorization: Bearer <token>` 헤더에 액세스 토큰을 넣습니다. 예를 들어 [`GET /v2/users/me`](https://api.dshs.app/docs#tag/내-정보/GET/v2/users/me)로 내 정보를 조회할 수 있습니다. 자세한 방법은 [학교 API 사용하기](dev-school-api.md)를 참고하세요.
+5. **토큰이 만료되면 갱신합니다.** 액세스 토큰의 유효 기간은 15분입니다. 학교 API가 `401`을 반환하면 [`POST /token`](https://id.dshs.app/docs#tag/토큰/POST/token)에 리프레시 토큰을 보내 새 토큰을 발급받고, 원래 요청을 다시 보냅니다. 아래의 [401 응답 시 토큰 갱신하기](#refresh-on-401)를 참고하세요.
 
-## Code
+## 코드 예제
 
-The snippets use plain HTTP through `fetch`, with no library. Replace `timetable-web`, the redirect URI and the Scopes with the values the admin registered for your Client: `scope` always contains `openid`, adds `profile` and `offline_access` if you need them, and then the School API Scopes your app uses.
+아래 예제는 별도 라이브러리 없이 `fetch`로 요청을 보냅니다. `timetable-web`, redirect URI, Scope는 관리자에게 등록한 값으로 바꾸세요. `scope`에는 `openid`를 반드시 포함하고, 필요에 따라 `profile`, `offline_access`, 앱에서 사용할 학교 API Scope를 추가합니다.
 
 <tabs>
-<tab title="Server app">
+<tab title="서버 앱">
 
-Node.js 18 or later (global `fetch`). Your server keeps the refresh token; the browser only ever sees your own session cookie.
+전역 `fetch`를 지원하는 Node.js 18 이상에서 실행할 수 있습니다. 리프레시 토큰은 서버에 보관하고, 브라우저에는 앱의 세션 쿠키만 전달합니다.
 
 ```javascript
 const ISSUER = 'https://id.dshs.app';
-const SCHOOL_API = 'https://api.dshs.app'; // the School API base URL of the user's School
+const SCHOOL_API = 'https://api.dshs.app'; // 사용자가 속한 학교의 API 기본 주소
 const CLIENT_ID = process.env.DSHS_CLIENT_ID;
 const CLIENT_SECRET = process.env.DSHS_CLIENT_SECRET;
-const REDIRECT_URI = 'https://timetable.example/callback'; // exactly as registered
+const REDIRECT_URI = 'https://timetable.example/callback'; // 등록한 주소와 정확히 일치해야 합니다.
 
 const basicAuth = 'Basic ' + Buffer.from(
   `${encodeURIComponent(CLIENT_ID)}:${encodeURIComponent(CLIENT_SECRET)}`,
 ).toString('base64');
 
-// POST /token with HTTP Basic client authentication
+// HTTP Basic으로 Client를 인증하고 POST /token을 호출합니다.
 async function tokenRequest(params) {
   const res = await fetch(`${ISSUER}/token`, {
     method: 'POST',
@@ -52,8 +52,8 @@ async function tokenRequest(params) {
   return body; // { access_token, token_type, expires_in: 900, id_token, refresh_token, scope }
 }
 
-// Step 1, your /login route: redirect the browser here.
-// Generate `state` randomly per login and keep it in the user's session.
+// 1단계: 앱의 /login에서 이 주소로 브라우저를 이동시킵니다.
+// state는 로그인할 때마다 무작위로 생성해 사용자의 세션에 저장하세요.
 function authUrl(state) {
   const url = new URL('/auth', ISSUER);
   url.search = new URLSearchParams({
@@ -66,13 +66,13 @@ function authUrl(state) {
   return url.toString();
 }
 
-// Step 2, your /callback route: check `state` against the session, then exchange the code.
-// Store the result server-side (session store or database), keyed by your own session.
+// 2단계: /callback에서 state가 세션에 저장한 값과 일치하는지 확인한 뒤 코드를 교환합니다.
+// 받은 토큰은 앱의 세션에 연결해 서버의 세션 저장소나 데이터베이스에 보관하세요.
 async function exchangeCode(code) {
   return tokenRequest({ grant_type: 'authorization_code', code, redirect_uri: REDIRECT_URI });
 }
 
-// Used by the refresh-on-401 wrapper below
+// 아래의 callSchoolApi()에서 401 응답을 받았을 때 호출합니다.
 async function refresh(refreshToken) {
   return tokenRequest({ grant_type: 'refresh_token', refresh_token: refreshToken });
 }
@@ -81,20 +81,20 @@ async function refresh(refreshToken) {
 </tab>
 <tab title="SPA">
 
-Runs in the browser. The PKCE verifier and challenge come from the Web Crypto API; the code exchange sends `code_verifier` instead of a secret.
+브라우저에서 실행하는 예제입니다. Web Crypto API로 PKCE에 필요한 verifier와 challenge를 만들고, 인증 코드를 교환할 때 비밀 키 대신 `code_verifier`를 보냅니다.
 
 ```javascript
 const ISSUER = 'https://id.dshs.app';
-const SCHOOL_API = 'https://api.dshs.app'; // the School API base URL of the user's School
+const SCHOOL_API = 'https://api.dshs.app'; // 사용자가 속한 학교의 API 기본 주소
 const CLIENT_ID = 'timetable-web';
-const REDIRECT_URI = `${location.origin}/callback`; // exactly as registered
+const REDIRECT_URI = `${location.origin}/callback`; // 등록한 주소와 정확히 일치해야 합니다.
 
 const base64url = (bytes) =>
   btoa(String.fromCharCode(...new Uint8Array(bytes)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const randomString = () => base64url(crypto.getRandomValues(new Uint8Array(32)));
 
-// POST /token as a public Client: client_id, no secret
+// public Client는 비밀 키 없이 client_id를 넣어 POST /token을 호출합니다.
 async function tokenRequest(params) {
   const res = await fetch(`${ISSUER}/token`, {
     method: 'POST',
@@ -106,9 +106,9 @@ async function tokenRequest(params) {
   return body; // { access_token, token_type, expires_in: 900, id_token, refresh_token, scope }
 }
 
-// Step 1: PKCE verifier + S256 challenge, then go to /auth
+// 1단계: PKCE verifier와 S256 challenge를 만든 뒤 /auth로 이동합니다.
 async function login() {
-  const verifier = randomString(); // 43 characters
+  const verifier = randomString(); // 43자
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier));
   const state = randomString();
   sessionStorage.setItem('pkce_verifier', verifier);
@@ -127,7 +127,7 @@ async function login() {
   location.assign(url);
 }
 
-// Step 2, on the /callback page: check `state`, then exchange the code with the verifier
+// 2단계: /callback에서 state를 확인하고, verifier와 함께 코드를 보내 토큰으로 교환합니다.
 async function handleCallback() {
   const params = new URLSearchParams(location.search);
   if (params.has('error')) throw new Error(params.get('error'));
@@ -144,7 +144,7 @@ async function handleCallback() {
   return tokens;
 }
 
-// Used by the refresh-on-401 wrapper below
+// 아래의 callSchoolApi()에서 401 응답을 받았을 때 호출합니다.
 async function refresh(refreshToken) {
   return tokenRequest({ grant_type: 'refresh_token', refresh_token: refreshToken });
 }
@@ -153,52 +153,59 @@ async function refresh(refreshToken) {
 </tab>
 </tabs>
 
-## Which access token you get {id="token-kind"}
+## 액세스 토큰의 종류 {id="token-kind"}
 
-With `resource=https://api.dshs.app` at `/token` you get a School API JWT (15 minutes, `aud` = that base URL, `scope` = the School API Scopes the user consented to); without `resource` you get an opaque token that only works at [`GET /userinfo`](https://id.dshs.app/docs#tag/사용자-정보/GET/userinfo). The `id_token` already carries the `profile` claims, so apps that use the School API always send `resource`; the "access token의 종류" section of [the reference](https://id.dshs.app/docs) has the details.
+`/token`을 호출할 때 `resource`를 지정했는지에 따라 발급되는 액세스 토큰이 달라집니다.
 
-## Refresh on 401 {id="refresh-on-401"}
+- **`resource=https://api.dshs.app`을 지정한 경우**: 학교 API용 JWT를 받습니다. 유효 기간은 15분이며, `aud`에는 학교 API 주소가, `scope`에는 사용자가 동의한 학교 API 권한이 담깁니다.
+- **`resource`를 생략한 경우**: [`GET /userinfo`](https://id.dshs.app/docs#tag/사용자-정보/GET/userinfo)에서만 사용할 수 있는 불투명(opaque) 토큰을 받습니다.
 
-Do not track the expiry clock: when the School API answers `401`, refresh at `/token` and send the same request once more. If the refresh fails with `invalid_grant` (30 days unused, consent revoked, logged out, or an old refresh token reused), log the user in again; an app without `offline_access` has no refresh token and goes straight to login.
+학교 API를 사용하는 앱은 `resource`를 지정하세요. `profile` Scope에 동의했다면 사용자 정보는 `id_token`에도 포함되므로 보통 `/userinfo`를 따로 호출할 필요가 없습니다. 자세한 내용은 [로그인 API 문서](https://id.dshs.app/docs)의 **access token의 종류**를 참고하세요.
 
-Every refresh returns a **new** refresh token: save it and drop the old one. This wrapper works with the `refresh()` function of either tab:
+## 401 응답 시 토큰 갱신하기 {id="refresh-on-401"}
+
+만료 시각을 따로 추적할 필요 없이, 학교 API가 `401`을 반환하면 `/token`에서 토큰을 갱신한 뒤 같은 요청을 한 번 더 보내면 됩니다. 갱신도 `invalid_grant`로 실패하면 다시 로그인해야 합니다. 30일 동안 사용하지 않았거나, 동의 철회·로그아웃·이전 리프레시 토큰 재사용 등으로 토큰이 무효가 된 경우입니다. `offline_access`를 요청하지 않은 앱은 리프레시 토큰이 없으므로 바로 로그인을 다시 시작합니다.
+
+갱신할 때마다 **새 리프레시 토큰**이 발급됩니다. 새 토큰을 저장하고 이전 토큰은 삭제하세요. 아래 함수는 앞의 서버 앱 또는 SPA 예제에 있는 `refresh()`와 함께 사용합니다.
 
 ```javascript
 class LoginRequired extends Error {}
 
-// session: { accessToken, refreshToken } of the current user, from the code exchange
+// session: 코드 교환으로 받은 현재 사용자의 토큰 { accessToken, refreshToken }
 async function callSchoolApi(session, path, init = {}) {
   const send = () => {
-    const headers = new Headers(init.headers); // keeps a Headers instance or a plain object
+    const headers = new Headers(init.headers); // Headers 인스턴스와 일반 객체 모두 처리합니다.
     headers.set('Authorization', `Bearer ${session.accessToken}`);
     return fetch(new URL(path, SCHOOL_API), { ...init, headers });
   };
 
   const res = await send();
   if (res.status !== 401) return res;
-  if (!session.refreshToken) throw new LoginRequired(); // no offline_access
+  if (!session.refreshToken) throw new LoginRequired(); // offline_access를 받지 않은 경우
 
   try {
     const tokens = await refresh(session.refreshToken);
     session.accessToken = tokens.access_token;
-    session.refreshToken = tokens.refresh_token; // rotated on every refresh
-    // persist session here (your session store or database)
+    session.refreshToken = tokens.refresh_token; // 갱신할 때마다 새 값으로 교체합니다.
+    // 여기서 변경한 세션을 세션 저장소나 데이터베이스에도 저장하세요.
   } catch (err) {
     if (err.error === 'invalid_grant') throw new LoginRequired();
     throw err;
   }
-  return send(); // retry once; a second 401 goes to the caller
+  return send(); // 한 번만 재시도합니다. 다시 401을 받으면 호출한 쪽에서 처리합니다.
 }
 ```
 
-Start the login again (step 1) wherever you catch `LoginRequired`.
+`LoginRequired`를 잡은 곳에서 1단계의 로그인 절차를 다시 시작하세요.
 
-## Logout
+## 로그아웃
 
-To log the user out of your app, delete the stored tokens and revoke the refresh token at [`POST /token/revocation`](https://id.dshs.app/docs#tag/토큰/POST/token/revocation); a School API JWT cannot be revoked and simply expires after 15 minutes. If the user also wants to sign out of dshs.app itself, send the browser to [`GET /session/end`](https://id.dshs.app/docs#tag/로그아웃/GET/session/end) with `id_token_hint` (a confirmation page appears once); returning to your app afterwards needs a post-logout redirect URI registered by the admin.
+앱에서 로그아웃할 때는 저장한 토큰을 삭제하고, [`POST /token/revocation`](https://id.dshs.app/docs#tag/토큰/POST/token/revocation)으로 리프레시 토큰을 무효화하세요. 학교 API용 JWT는 개별적으로 무효화할 수 없으며, 발급 후 15분이 지나면 만료됩니다.
+
+사용자가 dshs.app에서도 로그아웃하길 원하면 `id_token_hint`를 넣어 브라우저를 [`GET /session/end`](https://id.dshs.app/docs#tag/로그아웃/GET/session/end)로 보냅니다. 확인 화면이 한 번 표시됩니다. 로그아웃 후 앱으로 돌아오게 하려면 관리자에게 로그아웃 후 돌아올 주소도 미리 등록해야 합니다.
 
 <note>
 
-A library does most of this code for you (discovery, PKCE, token validation, refresh): the library table in [the reference](https://id.dshs.app/docs) lists one per environment.
+OIDC 라이브러리를 사용하면 서버 설정 조회(discovery), PKCE, 토큰 검증·갱신을 대부분 처리해 줍니다. [로그인 API 문서](https://id.dshs.app/docs)의 라이브러리 표에서 개발 환경에 맞는 도구를 확인하세요.
 
 </note>

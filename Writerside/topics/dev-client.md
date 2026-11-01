@@ -1,38 +1,42 @@
-# Getting a Client
+# Client 발급받기
 
-A **Client** is your app as registered on the login server: it has a `client_id`, the redirect URIs users may return to, and the Scopes it may request. There is no self-service registration page; the admin registers every Client by hand after reading your request. Registration stays manual on purpose: the admin checks each app's purpose against the [usage rules](developer.md#usage-rules) and keeps the set of apps that can act for users small.
+**Client**는 인증 서버에 등록된 앱을 뜻합니다. 앱마다 식별자인 `client_id`, 로그인 후 돌아올 주소(redirect URI), 요청할 수 있는 권한(Scope)이 정해져 있습니다.
 
-## Request a Client
+Client는 관리자가 신청 내용을 검토한 뒤 직접 등록합니다. 사용자의 권한으로 데이터에 접근하는 앱인 만큼, 사용 목적이 [이용 규칙](developer.md#usage-rules)에 맞는지 확인하고 승인한 앱에만 접근을 허용하기 위해서입니다. 개발자가 직접 등록하는 화면은 없습니다.
 
-Send the request through the private contact flow, not through a public GitHub issue: redirect URIs and secrets must not be public.
+## 발급 신청
 
-1. Open the [DSHS.APP contact page](https://dshs.app/contact) and complete the human check.
-2. Press **문의 이메일 보기** and write to the address it shows.
-3. Copy the template below into the email and fill in every row.
+발급 신청은 이메일로 받습니다. redirect URI나 비밀 키가 공개되지 않도록 GitHub 공개 이슈에는 신청 정보를 남기지 마세요.
 
-| Field | What to write | Example |
+1. [DSHS.APP 문의 페이지](https://dshs.app/contact)에서 사람 확인 절차를 완료합니다.
+2. **문의 이메일 보기**를 누릅니다.
+3. 아래 표의 항목을 모두 작성해 표시된 이메일 주소로 보냅니다.
+
+| 항목 | 작성할 내용 | 예시 |
 |---|---|---|
-| 앱 이름 (app name) | The name users see on the consent page (동의 화면). | 시간표 도우미 |
-| 사용 목적 (purpose) | What the app does and who uses it. The [usage rules](developer.md#usage-rules) hold you to this purpose. | Shows my class timetable together with assignments due this week. |
-| 앱 종류 (app type) | 서버 앱 (server app, the code exchange runs on your server) or SPA·네이티브 앱 (SPA or native app, the code exchange runs in the browser or on the device). See [](dev-login.md) if unsure. | SPA |
-| redirect URI 목록 (redirect URIs) | Every address users return to after login, exactly as your app sends it, including the development `localhost` one. Add `https://api.dshs.app/docs` if you want to try the API in the reference (SPA·네이티브 앱 only), and a post-logout URI if you use dshs.app logout. | `https://timetable.example/callback`, `http://localhost:5173/callback`, `https://api.dshs.app/docs` |
-| 필요한 Scope (Scopes) | Umbrella (우산) or leaf (잎) Scope names from [the Scope list](dev-school-api.md#scopes). Ask only for what the app uses. | `me.read`, `board.post.read`, `user.read` |
-| 연락처 (contact) | How the admin reaches you about this Client. | Name, student number, email |
+| 앱 이름 | 사용자의 권한 동의 화면에 표시할 이름입니다. | 시간표 도우미 |
+| 앱의 구체적인 설명 및 사용 목적 | 어떤 기능을 제공하고 누가 사용하는지 설명해 주세요. [이용 규칙](developer.md#usage-rules)에 따라 여기서 밝힌 목적 안에서 API를 사용해야 합니다. | 우리 반 시간표와 이번 주에 제출할 과제를 한 화면에서 보여 주는 학생용 앱입니다. |
+| 앱 종류 | 서버에서 인증 코드를 토큰으로 교환하면 **서버 앱**, 브라우저나 기기에서 직접 교환하면 **SPA·네이티브 앱**입니다. 자세한 구분은 [로그인 연동 안내](dev-login.md)를 참고하세요. | SPA |
+| redirect URI 목록 | 로그인 후 돌아올 주소를 실제 요청에 사용할 값과 정확히 같게 적어 주세요. 개발용 `localhost` 주소도 포함합니다. API 문서에서 직접 호출해 보려면 `https://api.dshs.app/docs`도 추가해 주세요(SPA·네이티브 앱만 해당). dshs.app 로그아웃 후 돌아올 주소도 필요하다면 함께 알려 주세요. | `https://timetable.example/callback`, `http://localhost:5173/callback`, `https://api.dshs.app/docs` |
+| 필요한 Scope | [Scope 목록](dev-school-api.md#scopes)에서 앱에 필요한 통합 또는 개별 Scope를 골라 주세요. 어떤 Scope가 필요한지 모르겠다면 사용하려는 기능을 적어 주셔도 됩니다. | `me.read`, `board.post.read`, `user.read` |
+| 연락처 | 앱에 관해 연락받을 수 있는 정보를 적어 주세요. | 이름, 학번, 이메일 |
 
-## What comes back
+## 발급 후 받는 정보
 
-The admin replies with:
+등록이 완료되면 관리자가 다음 정보를 보내 드립니다.
 
-- `client_id`: public, goes into every login request.
-- `client_secret`: server apps only. It authenticates your server at the token endpoint.
-- The list of Scopes your Client may request. Requesting anything else fails with `invalid_scope`.
+- `client_id`: 로그인 요청에 넣을 앱 식별자입니다. 공개되어도 되는 값입니다.
+- `client_secret`: 서버 앱에만 발급하는 비밀 키입니다. 토큰을 요청할 때 서버를 인증하는 데 사용합니다.
+- 허용된 Scope 목록: 앱이 사용자에게 요청할 수 있는 권한입니다. 목록에 없는 Scope를 요청하면 `invalid_scope` 오류가 발생합니다.
 
-To change any of this later (a new redirect URI, more Scopes), send another request the same way.
+redirect URI나 Scope를 추가하는 등 등록 정보를 바꾸려면 같은 이메일로 변경을 요청하세요.
 
-## Keep the secret on the server
+## 비밀 키 보관
 
-Never put `client_secret` into browser code, a mobile app bundle or a Git repository; read it from an environment variable or a secret store on your server. If it leaks, ask the admin through the same contact flow to rotate it, then deploy the new value.
+`client_secret`은 서버의 환경 변수나 비밀 키 저장소에서 불러오세요. 브라우저 코드, 모바일 앱 번들, Git 저장소에는 넣지 마세요. 키가 유출되었다면 관리자에게 재발급을 요청하고, 서버의 키를 새 값으로 교체해 배포하세요.
 
-## Redirect URI for trying the API {id="try-it-redirect"}
+## API 문서에서 호출해 보기 위한 설정 {id="try-it-redirect"}
 
-The School API reference can log you in with your own Client and call routes for you. This works for SPA·네이티브 앱 Clients only: ask the admin to add `https://api.dshs.app/docs` as an extra redirect URI. Server apps paste an access token instead; see [](dev-school-api.md#try-it).
+학교 API 문서에서는 발급받은 Client로 로그인해 API를 직접 호출해 볼 수 있습니다. 이 로그인 기능은 **SPA·네이티브 앱**으로 등록한 Client만 지원합니다. 사용하려면 관리자에게 `https://api.dshs.app/docs`를 redirect URI로 추가해 달라고 요청하세요.
+
+서버 앱은 직접 발급받은 액세스 토큰을 문서에 붙여 넣어 호출할 수 있습니다. 자세한 방법은 [API 문서에서 호출해 보기](dev-school-api.md#try-it)를 참고하세요.

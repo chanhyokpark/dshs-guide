@@ -1,51 +1,51 @@
-# Developers
+# 개발자 안내
 
-Current students and staff can build their own apps on DSHS.APP data. This section is the short path from idea to first API call; the two reference pages below stay the full and canonical description.
+재학생과 교직원은 DSHS.APP의 데이터를 활용해 앱을 만들 수 있습니다. 이 가이드에서는 앱 등록부터 로그인 연동, 첫 API 호출까지 필요한 과정을 안내합니다. API의 전체 사양은 아래의 API 문서를 참고하세요.
 
-## What you get
+## 사용할 수 있는 기능
 
-- **Log in with dshs.app** (dshs.app 계정으로 로그인): users sign in on `id.dshs.app` and come back to your app with tokens, like "Sign in with Google". It is standard OpenID Connect, and your app never sees a password.
-- **School API** (학교 API): read and write the logged-in user's school data (profile, boards, requests, dormitory, online judge and more) with the access token from that login.
+- **dshs.app 계정으로 로그인**: 사용자가 `id.dshs.app`에서 로그인하면 앱으로 돌아오고, 앱은 토큰을 발급받습니다. "구글로 로그인"과 같은 방식으로, OpenID Connect 표준을 따릅니다. 앱에서 사용자의 비밀번호를 직접 받지 않습니다.
+- **학교 API**: 로그인할 때 받은 액세스 토큰으로 내 정보, 게시판, 신청, 기숙사, 온라인 저지 등 학교 데이터를 읽고 쓸 수 있습니다.
 
-One **Client** (an app registered with the admin) covers both.
+관리자에게 앱을 **Client**로 등록하면 두 기능을 모두 사용할 수 있습니다.
 
-## Who can request a Client
+## 신청 대상
 
-Current students and staff (재학생과 교직원) can request a Client. The admin reviews every request and may refuse it.
+Client 발급은 재학생과 교직원이 신청할 수 있습니다. 관리자가 신청 내용을 검토하며, 검토 결과에 따라 발급이 거절될 수 있습니다.
 
-## Reference
+## API 문서
 
-| Reference | What it covers |
+| 문서 | 주요 내용 |
 |---|---|
-| [id.dshs.app/docs](https://id.dshs.app/docs) | Login, tokens, consent, logout. One login server for every School. |
-| [api.dshs.app/docs](https://api.dshs.app/docs) | The School API of 대전과학고등학교: every route, its Scopes, request and response schemas. |
+| [로그인 API](https://id.dshs.app/docs) | 로그인, 토큰 발급·갱신, 권한 동의, 로그아웃. 모든 학교가 같은 인증 서버를 사용합니다. |
+| [학교 API](https://api.dshs.app/docs) | 대전과학고등학교 API의 전체 경로, 필요한 권한(Scope), 요청·응답 형식. |
 
-The School API base URL is **per School**: `https://api.dshs.app` is the base URL for 대전과학고등학교, and a second School gets its own.
-
-<warning>
-
-**Beta.** Both APIs are in beta. Routes and responses may still change; the admin tells registered developers about changes directly.
-
-</warning>
-
-## Usage rules {id="usage-rules"}
+학교 API의 기본 주소는 **학교마다 다릅니다**. 이 가이드에서는 대전과학고등학교의 주소인 `https://api.dshs.app`을 사용합니다.
 
 <warning>
 
-Every app that uses a Client must follow these rules (이용 규칙).
-
-1. Use the API only for the purpose and scope you stated when you requested the Client.
-2. Do not automate first-party-only functions such as study seat reservation (자습 좌석 신청).
-3. Do not scrape the dshs.app web app.
-4. Respect the [Rate Limit](dev-school-api.md#rate-limit).
-5. Store only data you received through the Scopes the user consented to, and delete it when the user revokes consent.
-6. Do not re-share other students' personal data.
+두 API 모두 **베타**로 제공되며, 경로나 응답 형식이 바뀔 수 있습니다. 변경 사항은 등록된 개발자에게 관리자가 직접 안내합니다.
 
 </warning>
 
-## Get started
+## 이용 규칙 {id="usage-rules"}
 
-1. [](dev-client.md): ask the admin for a Client.
-2. [](dev-login.md): add the login to your app and get tokens.
-3. [](dev-school-api.md): call the School API with the access token.
-4. [](dev-troubleshooting.md): look up an error you hit on the way.
+<warning>
+
+Client를 발급받아 사용하는 앱은 다음 규칙을 지켜야 합니다.
+
+1. Client를 신청할 때 밝힌 목적과 범위 안에서만 API를 사용하세요.
+2. 서비스에 이미 존재하는 기능을 구현하지 마세요. 데이터를 활용해 새로운 서비스를 제공하는 것은 허용됩니다. 
+3. dshs.app 웹사이트를 스크래핑하지 마세요.
+4. [요청 횟수 제한](dev-school-api.md#rate-limit)을 지켜 주세요.
+5. 사용자가 동의한 Scope로 받은 데이터만 저장하고, 사용자가 동의를 철회하면 삭제하세요.
+6. 다른 학생의 개인정보를 제삼자에게 공유하지 마세요.
+
+</warning>
+
+## 시작하기
+
+1. [Client 발급받기](dev-client.md): 관리자에게 앱 등록을 신청합니다.
+2. [dshs.app 로그인 연동](dev-login.md): 앱에 로그인을 연동하고 토큰을 발급받습니다.
+3. [학교 API 사용하기](dev-school-api.md): 액세스 토큰으로 API를 호출합니다.
+4. [문제 해결](dev-troubleshooting.md): 연동 중 오류가 발생하면 원인과 해결 방법을 확인합니다.
