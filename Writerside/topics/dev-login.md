@@ -4,7 +4,7 @@ Log in with dshs.app is standard OpenID Connect (Authorization Code flow) served
 
 ## Choose a Client type
 
-- **Server app** (서버 앱, confidential Client): your server exchanges the code, authenticating with `client_secret`. PKCE is optional.
+- **Server app** (서버 앱, confidential Client): your server exchanges the code, authenticating with `client_secret`. PKCE is optional but recommended.
 - **SPA or native app** (SPA·네이티브 앱, public Client): the browser or the device exchanges the code. There is no secret, so PKCE (S256) is required.
 
 Pick server app whenever you have a backend; the Client 종류 table in [the reference](https://id.dshs.app/docs) lists the remaining differences, such as how often the consent page (동의 화면) appears.
@@ -168,10 +168,11 @@ class LoginRequired extends Error {}
 
 // session: { accessToken, refreshToken } of the current user, from the code exchange
 async function callSchoolApi(session, path, init = {}) {
-  const send = () => fetch(new URL(path, SCHOOL_API), {
-    ...init,
-    headers: { ...init.headers, Authorization: `Bearer ${session.accessToken}` },
-  });
+  const send = () => {
+    const headers = new Headers(init.headers); // keeps a Headers instance or a plain object
+    headers.set('Authorization', `Bearer ${session.accessToken}`);
+    return fetch(new URL(path, SCHOOL_API), { ...init, headers });
+  };
 
   const res = await send();
   if (res.status !== 401) return res;
@@ -181,6 +182,7 @@ async function callSchoolApi(session, path, init = {}) {
     const tokens = await refresh(session.refreshToken);
     session.accessToken = tokens.access_token;
     session.refreshToken = tokens.refresh_token; // rotated on every refresh
+    // persist session here (your session store or database)
   } catch (err) {
     if (err.error === 'invalid_grant') throw new LoginRequired();
     throw err;
@@ -195,6 +197,8 @@ Start the login again (step 1) wherever you catch `LoginRequired`.
 
 To log the user out of your app, delete the stored tokens and revoke the refresh token at [`POST /token/revocation`](https://id.dshs.app/docs#tag/토큰/POST/token/revocation); a School API JWT cannot be revoked and simply expires after 15 minutes. If the user also wants to sign out of dshs.app itself, send the browser to [`GET /session/end`](https://id.dshs.app/docs#tag/로그아웃/GET/session/end) with `id_token_hint` (a confirmation page appears once); returning to your app afterwards needs a post-logout redirect URI registered by the admin.
 
-## Using a library
+<note>
 
 A library does most of this code for you (discovery, PKCE, token validation, refresh): the library table in [the reference](https://id.dshs.app/docs) lists one per environment.
+
+</note>
