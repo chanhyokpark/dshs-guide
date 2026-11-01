@@ -1,6 +1,6 @@
 # Getting a Client
 
-A **Client** is your app as registered on the login server: it has a `client_id`, the redirect URIs users may return to, and the Scopes it may request. There is no self-service registration page; the admin registers every Client by hand after reading your request.
+A **Client** is your app as registered on the login server: it has a `client_id`, the redirect URIs users may return to, and the Scopes it may request. There is no self-service registration page; the admin registers every Client by hand after reading your request. Registration stays manual on purpose: the admin checks each app's purpose against the [usage rules](developer.md#usage-rules) and keeps the set of apps that can act for users small.
 
 ## Request a Client
 

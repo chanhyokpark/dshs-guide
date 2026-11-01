@@ -4,11 +4,11 @@ One section per symptom. Login and token errors are listed in the 오류 table o
 
 ## redirect_uri mismatch
 
-**Symptom:** id.dshs.app shows an error page (`invalid_request`) instead of the login screen, or `/token` rejects the code with `invalid_grant`.
+**Symptom:** id.dshs.app shows an error page with `invalid_redirect_uri` instead of the login screen, or `/token` rejects the code with `invalid_grant`.
 
 **Cause:** the `redirect_uri` is not exactly one of the URIs registered for your Client (scheme, host, port, path and trailing slash all count), or it differs between `/auth` and `/token`.
 
-**Fix:** send the registered string unchanged at both `/auth` and `/token`; for a new address (another `localhost` port, a new domain) ask the admin through [](dev-client.md). See `invalid_request` in [the error table](https://id.dshs.app/docs).
+**Fix:** send the registered string unchanged at both `/auth` and `/token`; for a new address (another `localhost` port, a new domain) ask the admin through [](dev-client.md). See [the error table](https://id.dshs.app/docs): its closest row is `invalid_request`, which lists an unregistered `redirect_uri` although the error page shows `invalid_redirect_uri`, and `invalid_grant` covers the `/token` case.
 
 ## invalid_scope
 
@@ -48,7 +48,7 @@ One section per symptom. Login and token errors are listed in the 오류 table o
 
 **Cause:** the token lacks a leaf Scope the route lists under 필요한 Scope; the `scope` value of the `WWW-Authenticate` header names it.
 
-**Fix:** add the Scope to `scope` at `/auth` (ask the admin first if your Client is not allowed it) and let the user log in and consent again. A `403` with `forbidden` instead means the user's role cannot use the function, and no Scope changes that. See `403` in [the School API errors](https://api.dshs.app/docs).
+**Fix:** add the Scope to `scope` at `/auth` (ask the admin first if your Client is not allowed it) and let the user log in and consent again. A `403` with `forbidden` instead means the user's role, or ownership of the item, does not allow the action (editing someone else's post, for example), and no Scope changes that. See `403` in [the School API errors](https://api.dshs.app/docs).
 
 ## Users come back with only an id
 

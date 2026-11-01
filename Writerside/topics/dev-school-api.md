@@ -23,7 +23,7 @@ The eight umbrella Scopes, with the label users see on the consent page (동의 
 
 ## First-party only
 
-Some functions stay inside the dshs.app apps and have no Scope at all: study seat reservation and cancellation (자습 좌석 신청), out-requests (외출·특별실 신청), online judge contests, notifications (알림), sending messages and authoring forms. A route that is not in the reference cannot be called with an external app's token.
+Some functions stay inside the dshs.app apps and have no Scope at all: study seat reservation and cancellation (자습 좌석 신청), the legacy out-request module ([외출·특별실 신청](out.md)), online judge contests, notifications (알림), sending messages and authoring forms. 일반 신청 forms, including 외출 and 특별실 forms, are reachable through the `request` Scope. A route that is not in the reference cannot be called with an external app's token.
 
 ## Response rules
 
@@ -47,10 +47,12 @@ Over the limit you get `429` (`rate_limited`) with `Retry-After` in seconds; see
 This reads every page of [`GET /v2/messages/threads`](https://api.dshs.app/docs#tag/메시지/GET/v2/messages/threads) (Scopes `message.read` and `user.read`). In your app, send the request through `callSchoolApi()` from [Refresh on 401](dev-login.md#refresh-on-401) so an expired token is refreshed for you.
 
 ```javascript
+const SCHOOL_API = 'https://api.dshs.app'; // the School API base URL, as on the login page
+
 async function listAllThreads(accessToken) {
   const threads = [];
   for (let page = 1; ; page++) {
-    const url = new URL('/v2/messages/threads', 'https://api.dshs.app');
+    const url = new URL('/v2/messages/threads', SCHOOL_API);
     url.search = new URLSearchParams({ page: String(page), perPage: '50' });
 
     const res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
