@@ -53,6 +53,12 @@
         <toc-element topic="parent-communication.md"/>
         <toc-element topic="parent-settings.md"/>
     </toc-element>
+    <toc-element topic="developer.md">
+        <toc-element topic="dev-client.md"/>
+        <toc-element topic="dev-login.md"/>
+        <toc-element topic="dev-school-api.md"/>
+        <toc-element topic="dev-troubleshooting.md"/>
+    </toc-element>
     <toc-element topic="contact.md"/>
     <toc-element topic="privacy-compliance.md">
         <toc-element topic="privacy-management-plan.md"/>
